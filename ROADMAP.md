@@ -1,20 +1,51 @@
-# 🗺️ Full-Stack TypeScript Mastery — Complete Roadmap
+# 🗺️ TypeScript-First Full-Stack Mastery Roadmap (24 Weeks)
 
-> **Goal:** Job-ready for top MNC and product-company full-stack roles. Master core web development fundamentals, TypeScript strict, backend architecture, modern React/Next.js, databases, scaling, and system design.
-> **Stack:** TypeScript (strict), React, Next.js (App Router), Node.js, Express, NestJS, Zod, PostgreSQL, Prisma, MongoDB, Redis, Socket.io, BullMQ, Vitest, Playwright, Docker, GitHub Actions, AWS.
-> **Interactive Tracker:** Launch locally via `cd tracker && npm run dev` (http://localhost:5173).
+> **Profile:** Final-Year B.Tech CS Student (Graduating 2027) | 400+ LeetCode Solved  
+> **Target:** Top MNC & Product Company SDE / Full-Stack Roles (Campus Placements & Off-Campus)  
+> **Commitment:** 24 Weeks @ 4–5 Hours/Day  
+> **Flagship Projects:** **Collab-Code** (Real-Time Collaborative IDE) & **Smart City Issue Reporting** (Civic Reporting Portal)  
+> **Interactive Web Tracker:** Launch via `cd tracker && npm run dev` (http://localhost:5173)  
 >
-> **🔴 Critical** = Asked in almost every interview round
-> **🟡 Important** = Frequently asked, daily production use
-> **🟢 Good-to-know** = Competitive differentiator
+> **Priority Key:**  
+> 🔴 **Critical:** Core stack essentials and high-frequency technical interview questions (must know cold).  
+> 🟡 **Important:** Essential production engineering practices and patterns for building scalable applications.  
+> 🟢 **Good-to-know:** Secondary or optional enterprise extensions that do not block the 24-week core completion.
 
 ---
 
-## Phase 0 — 🔷 TypeScript Core
-*The language everything else is built on. Master the type system before touching any framework.*
+## 📅 24-Week Schedule Overview
+
+| Weeks | Phase | Core Focus | Project Context |
+|---|---|---|---|
+| **Weeks 1–2** | **Phase 0** | TypeScript Core & Developer Collaboration Workflow | Collab-Code & Smart City shared types & Git setup |
+| **Weeks 3–4** | **Phase 1** | JavaScript Runtime, Concurrency & Reliability | Race condition prevention in Collab-Code real-time edits |
+| **Weeks 5–6** | **Phase 2** | Web, Networking & Browser Architecture Fundamentals | Accessible & responsive citizen portal in Smart City |
+| **Weeks 7–8** | **Phase 3** | Node.js Core, Streams & Reliability | Streaming media & attachment handling in Smart City |
+| **Weeks 9–10** | **Phase 4** | Production HTTP, Express & REST APIs | Idempotent issue submission & RBAC in Smart City |
+| **Weeks 11–13** | **Phase 5** | PostgreSQL, Prisma & Production Data Layer | Normalization, JSONB, indexing & locking in Smart City |
+| **Weeks 14–16** | **Phase 6** | React & Next.js App Router (Production Quality) | Next.js Server Components, Actions & optimistic UI |
+| **Weeks 17–18** | **Phase 7** | Redis, Resilient Background Jobs & WebSockets | Real-time presence in Collab-Code & BullMQ alerts in Smart City |
+| **Weeks 19–20** | **Phase 8** | Comprehensive Testing & Quality Engineering | DB integration tests, RBAC regressions & Playwright E2E |
+| **Weeks 21–22** | **Phase 9** | DevOps, Docker, CI/CD, AWS & Observability | Multi-stage Docker, GitHub Actions & AWS deployment |
+| **Weeks 23–24** | **Phase 10** | Practical System Design & Capstone Architecture | Capacity estimation, bottleneck analysis & capstone audits |
+| *Bonus* | **Phase 11** | NestJS Enterprise Backend Extension | Enterprise modular architecture & IoC (Optional) |
+
+---
+
+## Phase 0 — 🔷 TypeScript Core & Developer Workflow
+*Weeks 1–2 (24-Week Plan) | 4–5 hrs/day*
+
+**🎯 Learning Outcomes:**
+- Configure strict `tsconfig.json` compiler flags for modern ESM projects with zero implicit `any`.
+- Model complex domain entities using discriminated unions, generics, mapped types, and the `satisfies` operator.
+- Validate untrusted inputs at runtime boundaries while preserving static type safety.
+- Execute professional Git branching, interactive rebasing, merge conflict resolution, and atomic PR reviews.
+
+**🏗️ Project Anchor:**  
+Define shared TypeScript domain models (`Document`, `EditOperation`, `IssueReport`, `UserRole`) and establish the Git branching, PR workflow, and lint/type-check hooks for Collab-Code and Smart City.
 
 ### 0.1 — tsconfig.json & Compiler Deep-Dive
-- 🔴 What tsc does: parse → type-check → emit
+- 🔴 What `tsc` does: parse → type-check → emit
 - 🔴 `strict` mode and the 8 flags it enables
 - 🔴 `target` vs `module` vs `moduleResolution`
 - 🟡 `noUncheckedIndexedAccess`, `noImplicitReturns`
@@ -91,12 +122,39 @@
 - 🟡 Module resolution: how TS finds imports
 - 🟡 `package.json` `exports` field
 
-> **🚪 Gate 0:** Quiz 80%+, all exercises green, mini-build (type-safe event emitter with generics), explain-back ×3.
+### 0.10 — Git & Developer Collaboration Workflow
+- 🔴 Git branching models: feature branches, trunk-based vs Git-Flow
+- 🔴 Merging vs Rebasing: interactive rebase (`git rebase -i`), squash merging, commit cleanliness
+- 🔴 Merge conflict resolution mechanics, 3-way diffs, aborting rebases safely
+- 🔴 Safe undos: `git revert` vs `git reset` (--soft, --mixed, --hard) vs `git restore`
+- 🟡 Pull Request lifecycle: atomic commits, conventional commits, constructive code reviews
+- 🟡 Release tags (`git tag -a`), Semantic Versioning (SemVer), and changelogs
+- 🔴 Dependency lockfile hygiene: `package-lock.json` integrity, deterministic builds, `npm ci` vs `npm install`
+
+### 0.11 — Advanced TypeScript & Boundary Validation
+- 🔴 Structural typing (duck typing) vs nominal typing, and excess property check rules
+- 🔴 The `satisfies` operator: validating shapes without widening or losing literal types
+- 🔴 `keyof` operator and Indexed Access types (`T[K]`, `T[number]`)
+- 🟡 Function overloads: implementation signatures vs call signatures
+- 🔴 Runtime validation at untrusted boundaries: why compile-time types alone cannot validate API input
+- 🟡 Ambient declarations, `declare global`, and augmenting third-party library types
+
+> **🛠️ Mini-Build:** Type-Safe In-Memory Event Emitter with generic event maps, payload validation, and clean Git feature branch workflow with signed tags.  
+> **🚪 Completion Gate:** Explain: `tsc` compilation stages and structural vs nominal typing | Implement: Generic event emitter with strict payloads | Debug: Resolve a 3-way Git merge conflict & fix a type-widening bug | Apply: Commit clean domain types to project repo with atomic PR commits.
 
 ---
 
-## Phase 1 — ⚡ JavaScript Runtime & Async Patterns
-*The #1 interview topic. Event loop, promises, closures — asked everywhere from startups to FAANG.*
+## Phase 1 — ⚡ JavaScript Runtime, Concurrency & Reliability
+*Weeks 3–4 (24-Week Plan) | 4–5 hrs/day*
+
+**🎯 Learning Outcomes:**
+- Predict and trace event loop execution order across synchronous execution, microtasks, timers, and I/O.
+- Implement robust asynchronous coordination patterns with timeout, cancellation, and concurrency limits.
+- Diagnose and eliminate memory leaks (lingering event listeners, timer retention, circular closures).
+- Prevent async race conditions in stateful client operations and server request handlers.
+
+**🏗️ Project Anchor:**  
+Collab-Code: Prevent race conditions when merging concurrent keystrokes from multiple users; eliminate memory leaks in active code-editing rooms when users disconnect.
 
 ### 1.1 — Event Loop Internals
 - 🔴 Call stack: how function execution works
@@ -162,17 +220,35 @@
 - 🟡 Async generators: `async function*`, `for await...of`
 - 🟢 Use cases: lazy evaluation, streaming data
 
-> **🚪 Gate 1:** Quiz 80%+, all exercises green, mini-build (async task runner with retry + cancellation + concurrency limit), explain-back ×3.
+### 1.9 — JavaScript Reliability, Memory & Concurrency Gotchas
+- 🔴 Object references, shallow copies (spread, `Object.assign`) vs deep copies (`structuredClone`)
+- 🔴 Equality and coercion: `==` vs `===` vs `Object.is` (-0, NaN, object reference identity)
+- 🔴 Immutability vs in-place mutation pitfalls in state and async workflows
+- 🔴 Async race conditions: stale responses, unsynchronized shared memory, out-of-order execution
+- 🔴 Memory leaks in JS: lingering event listeners, timer retention, detached DOM nodes, closures holding large scopes
+- 🟡 Debugging Node.js and browser JS using breakpoints, inspector, source maps, and memory profiling
+
+> **🛠️ Mini-Build:** Async Task Runner with retry + exponential backoff + cancellation (`AbortSignal`) + concurrency limit pool.  
+> **🚪 Completion Gate:** Explain: Call stack, macrotask, and microtask queue priorities | Implement: `Promise.all` from scratch with fail-fast semantics | Debug: Find and fix memory leak in unclosed WebSocket listener | Apply: Add `AbortSignal` timeout to code execution API calls in Collab-Code.
 
 ---
 
 ## Phase 2 — 🌐 Web, Networking & Browser Architecture Fundamentals
-*The foundational mechanics of the web. Essential for technical interviews.*
+*Weeks 5–6 (24-Week Plan) | 4–5 hrs/day*
+
+**🎯 Learning Outcomes:**
+- Trace the full network journey from URL entry to first byte (DNS, TCP 3-way, TLS 1.3 handshake, HTTP/2/3).
+- Optimize Critical Rendering Path by eliminating parser-blocking resources and layout thrashing.
+- Defend applications against OWASP Top 10 web vulnerabilities (XSS, CSRF, Clickjacking, CORS misconfiguration).
+- Build fully accessible (a11y), responsive UI layouts adhering to semantic HTML and keyboard navigation standards.
+
+**🏗️ Project Anchor:**  
+Smart City Issue Reporting: Public citizen reporting portal requires WCAG accessibility, responsive mobile layouts, secure cookie auth, and fast LCP image rendering on slow 4G connections.
 
 ### 2.1 — Networking Under the Hood
 - 🔴 What happens when you type a URL in the browser and hit Enter (complete journey)
-- 🔴 DNS resolution: recursive vs iterative queries, DNS record types (A, AAAA, CNAME, TXT)
-- 🔴 TCP 3-way handshake (SYN, SYN-ACK, ACK) and 4-way FIN termination
+- 🔴 DNS resolution: recursive vs iterative queries, DNS record types (`A`, `AAAA`, `CNAME`, `TXT`)
+- 🔴 TCP 3-way handshake (`SYN`, `SYN-ACK`, `ACK`) and 4-way FIN termination
 - 🔴 TLS/HTTPS 1.3 handshake: certificates, asymmetric/symmetric encryption, forward secrecy
 - 🔴 HTTP Evolution: HTTP/1.1 vs HTTP/2 (multiplexing, HPACK) vs HTTP/3 (QUIC over UDP)
 - 🟡 Head-of-Line (HoL) blocking at application vs transport layer
@@ -193,14 +269,14 @@
 - 🔴 Stacking Context & `z-index` rules (`opacity`, `transform`, `isolation`)
 - 🔴 Flexbox layout algorithm: main-axis, cross-axis, `flex-grow`, `flex-shrink`, `flex-basis`
 - 🟡 CSS Grid: `grid-template-columns`, `fr` units, `minmax()`, `auto-fit` vs `auto-fill`
-- 🟡 CSS Specificity calculation & `@layer`
+- 🟡 CSS Specificity calculation (inline vs ID vs class vs element) & `@layer`
 
 ### 2.4 — Web Security & OWASP Top 10 for Full-Stack
 - 🔴 Same-Origin Policy (SOP): origins, protocols, ports
-- 🔴 CORS deep-dive: Simple requests vs Preflight (`OPTIONS`), CORS response headers
-- 🔴 Cross-Site Scripting (XSS): Stored, Reflected, DOM-based & prevention
+- 🔴 CORS deep-dive: Simple requests vs Preflight (`OPTIONS`), CORS headers
+- 🔴 Cross-Site Scripting (XSS): Stored, Reflected, DOM-based & sanitization
 - 🔴 Content Security Policy (CSP): directives, nonces, hashes
-- 🔴 Cross-Site Request Forgery (CSRF): mechanics & SameSite cookies / anti-CSRF tokens
+- 🔴 Cross-Site Request Forgery (CSRF): attack mechanics & SameSite cookies / anti-CSRF tokens
 - 🟡 Clickjacking & `X-Frame-Options` / `frame-ancestors`
 - 🔴 SQL Injection & NoSQL Injection defense
 - 🟡 Server-Side Request Forgery (SSRF) basics
@@ -216,17 +292,35 @@
 ### 2.6 — Web Performance & Core Web Vitals
 - 🔴 Core Web Vitals: LCP (Largest Contentful Paint) & optimization
 - 🔴 Core Web Vitals: INP (Interaction to Next Paint) & main thread blocking
-- 🔴 Core Web Vitals: CLS (Cumulative Layout Shift) & layout stability
+- 🔴 Core Web Vitals: CLS (Cumulative Layout Shift) & aspect-ratio / layout stability
 - 🟡 Resource hints: `preload`, `prefetch`, `preconnect`, `dns-prefetch`
 - 🔴 Bundle optimization: tree shaking, code splitting (dynamic `import()`), compression (Gzip/Brotli)
 - 🟡 Image optimization: WebP/AVIF, responsive images (`srcset`, `sizes`), lazy loading
 
-> **🚪 Gate 2:** Quiz 80%+, all exercises green, mini-build (interactive Critical Rendering Path visualizer & security header analyzer), explain-back ×3.
+### 2.7 — Frontend Engineering Foundations: Accessibility, Layout & UI States
+- 🔴 Semantic HTML elements (`main`, `nav`, `article`, `section`, `dialog`) vs div soup
+- 🔴 Web accessibility (a11y): ARIA attributes (`aria-label`, `aria-expanded`, `aria-live`), contrast, screen readers
+- 🔴 Keyboard navigation & focus management: `tabindex`, visible focus rings, accessible modal focus traps
+- 🟡 Responsive design: mobile-first approach, fluid typography (`clamp()`), container queries vs media queries
+- 🔴 Essential UI state design: loading skeletons, actionable error states, informative empty states
+- 🔴 Accessible form controls: labels, error descriptions (`aria-describedby`), disabled vs aria-disabled
+
+> **🛠️ Mini-Build:** Interactive Critical Rendering Path visualizer & security header analyzer (evaluating CORS, CSP, HSTS, X-Frame-Options).  
+> **🚪 Completion Gate:** Explain: Critical Rendering Path (DOM -> CSSOM -> Layout -> Paint -> Composite) | Implement: Secure CORS & Content Security Policy (CSP) headers | Debug: Diagnose and fix layout thrashing causing jank in scroll events | Apply: Make Smart City issue submission form 100% accessible with keyboard focus trap.
 
 ---
 
-## Phase 3 — 🟢 Node.js Core
-*Understand how your server runtime works. Streams, file system, processes — the building blocks.*
+## Phase 3 — 🟢 Node.js Core, Streams & Reliability
+*Weeks 7–8 (24-Week Plan) | 4–5 hrs/day*
+
+**🎯 Learning Outcomes:**
+- Explain the exact division of labor between V8, libuv event loop, and the 4-thread worker pool.
+- Process large datasets and media files using Node Streams and `pipeline()` without memory ballooning.
+- Profile CPU utilization and heap memory allocations to catch event loop lag and memory leaks.
+- Implement zero-downtime graceful shutdown patterns handling active request draining.
+
+**🏗️ Project Anchor:**  
+Smart City: Stream citizen photo uploads directly to disk/storage using Transform streams without buffering whole files in RAM; ensure server drains active uploads on `SIGTERM`.
 
 ### 3.1 — Node.js Architecture
 - 🔴 V8 engine: compilation, garbage collection
@@ -260,7 +354,7 @@
 - 🔴 `process.env`: environment variables
 - 🔴 `.env` files and dotenv (or `--env-file` flag)
 - 🟡 `process.exit`, exit codes
-- 🟡 Signal handling: SIGTERM, SIGINT
+- 🟡 Signal handling: `SIGTERM`, `SIGINT`
 - 🔴 Graceful shutdown pattern
 
 ### 3.6 — ESM in Node.js & Package Configuration
@@ -270,12 +364,30 @@
 - 🟡 `__dirname` and `__filename` in ESM (`import.meta`)
 - 🟢 Top-level `await` in ESM modules
 
-> **🚪 Gate 3:** Quiz 80%+, all exercises green, mini-build (streaming CSV parser with Transform streams), explain-back ×3.
+### 3.7 — Node.js Production Reliability, Profiling & Dependency Hygiene
+- 🟡 CPU and memory profiling in Node: taking heap snapshots, detecting memory leaks with `--inspect`
+- 🔴 Event loop lag monitoring & detecting main thread blocking operations
+- 🔴 Strict environment variable validation on boot using Zod (failing fast on missing config)
+- 🟡 Package management hygiene: semantic version ranges (`^` vs `~` vs exact), peer dependencies, lockfile resolution
+- 🟡 Security vulnerability auditing: `npm audit`, evaluating CVE severity, malicious package detection
+- 🔴 Connection draining and zero-downtime graceful shutdown with active HTTP/WebSocket connections
+
+> **🛠️ Mini-Build:** Streaming CSV & Media processor with Transform streams, backpressure management, memory ceiling guard, and graceful shutdown.  
+> **🚪 Completion Gate:** Explain: When Node.js uses threads under the hood vs when it is single-threaded | Implement: Transform stream pipeline with backpressure handling | Debug: Identify event-loop blocking synchronous operation using Node inspector | Apply: Add graceful shutdown listener with 10s drain window to backend server.
 
 ---
 
-## Phase 4 — ⚡ HTTP, Express & REST APIs
-*The bread and butter of backend engineering. Every backend interview starts here.*
+## Phase 4 — ⚡ Production HTTP, Express & REST APIs
+*Weeks 9–10 (24-Week Plan) | 4–5 hrs/day*
+
+**🎯 Learning Outcomes:**
+- Construct robust Express middleware pipelines with centralized, typed error contracts.
+- Implement secure authentication with bcrypt, short-lived JWTs, and refresh token rotation in HttpOnly cookies.
+- Build idempotent API mutation endpoints with `Idempotency-Key` caching.
+- Validate and ingest file uploads safely with strict MIME and size controls.
+
+**🏗️ Project Anchor:**  
+Smart City Issue Reporting: Implement citizen issue submission, staff assignment, role-based status updates (Citizen, Field Worker, Municipal Admin), and webhook triggers for resolved issues.
 
 ### 4.1 — HTTP Fundamentals for APIs
 - 🔴 Request/response cycle & statelessness
@@ -337,12 +449,32 @@
 - 🟡 Testing error cases and edge cases
 - 🟡 Test database setup and teardown
 
-> **🚪 Gate 4:** Quiz 80%+, all exercises green, mini-build (production-style REST API with auth, validation, error handling), explain-back ×3.
+### 4.9 — Production API Reliability, Contracts & Ingestion
+- 🔴 Pagination at scale: offset-based vs cursor-based (keyset pagination) performance tradeoffs
+- 🔴 Standardized API error contracts: RFC 7807 Problem Details and consistent JSON error envelopes
+- 🔴 Idempotency keys (`Idempotency-Key` header): preventing duplicate charges/mutations on network retry
+- 🟡 Request timeouts and server-side request cancellation with `AbortController`
+- 🟡 Request body payload limits (`express.json({ limit: '1mb' })`) and rate limiting bypass prevention
+- 🔴 Webhook signature verification: HMAC SHA-256 raw body validation for third-party events
+- 🔴 Secure file uploads: Multer configuration, MIME-type sniffing vs extension validation, size limits, streaming to S3
+- 🟡 OpenAPI / Swagger documentation generation for Express APIs (`tsoa` or `swagger-jsdoc`)
+
+> **🛠️ Mini-Build:** Production REST API with JWT rotation, RBAC guards, Zod request validation, idempotency key support, Multer upload security, and auto-generated Swagger documentation.  
+> **🚪 Completion Gate:** Explain: Access token vs refresh token storage & rotation security tradeoffs | Implement: Idempotency middleware preventing duplicate issue submissions | Debug: Fix an authentication bypass vulnerability in RBAC middleware guard | Apply: Generate complete OpenAPI spec and run Supertest API integration tests.
 
 ---
 
-## Phase 5 — 🗄️ Databases: SQL, Prisma & MongoDB
-*SQL is asked in every backend round. Relational modeling, complex queries, indexing, and transactions.*
+## Phase 5 — 🗄️ PostgreSQL, Prisma & Production Data Layer
+*Weeks 11–13 (24-Week Plan) | 4–5 hrs/day*
+
+**🎯 Learning Outcomes:**
+- Design normalized relational schemas (3NF) and write complex multi-table SQL queries with CTEs and Window functions.
+- Read and optimize query execution plans using `EXPLAIN ANALYZE` and composite B-tree indexes.
+- Prevent race conditions and deadlocks using ACID transactions and row-level locking (`SELECT FOR UPDATE`).
+- Manage PostgreSQL connection pooling with PgBouncer and execute safe, zero-downtime Prisma migrations.
+
+**🏗️ Project Anchor:**  
+Smart City Issue Reporting: Design the complete relational data model (`Users`, `Issues`, `Comments`, `Upvotes`, `AuditLogs`, `Categories`) with JSONB metadata and concurrent upvote transaction locking.
 
 ### 5.1 — Relational Database Fundamentals
 - 🔴 Tables, rows, columns, primary keys, surrogate vs natural keys
@@ -356,9 +488,9 @@
 - 🔴 JOINs: INNER, LEFT, RIGHT, FULL, CROSS JOIN
 - 🔴 GROUP BY, HAVING, aggregate functions (COUNT, SUM, AVG, MAX)
 - 🔴 Subqueries: correlated vs non-correlated subqueries
-- 🔴 Window functions: ROW_NUMBER, RANK, DENSE_RANK, LEAD, LAG, SUM OVER
-- 🔴 CTEs (Common Table Expressions): WITH clause & recursive CTEs
-- 🔴 INSERT, UPDATE, DELETE, UPSERT (ON CONFLICT DO UPDATE)
+- 🔴 Window functions: `ROW_NUMBER`, `RANK`, `DENSE_RANK`, `LEAD`, `LAG`, `SUM OVER`
+- 🔴 CTEs (Common Table Expressions): `WITH` clause & recursive CTEs
+- 🔴 INSERT, UPDATE, DELETE, UPSERT (`ON CONFLICT DO UPDATE`)
 - 🟡 Views and Materialized Views
 
 ### 5.3 — Indexing & Query Performance
@@ -375,7 +507,7 @@
 - 🔴 Isolation levels: Read Uncommitted, Read Committed, Repeatable Read, Serializable
 - 🔴 Concurrency anomalies: Dirty reads, Non-repeatable reads, Phantom reads, Write skew
 - 🟡 Deadlocks: causes, detection, and mitigation strategies
-- 🟡 Optimistic vs Pessimistic locking (SELECT FOR UPDATE)
+- 🟡 Optimistic vs Pessimistic locking (`SELECT FOR UPDATE`)
 
 ### 5.5 — Prisma ORM
 - 🔴 Prisma schema: models, fields, relations, attributes
@@ -387,20 +519,39 @@
 - 🟡 Transactions in Prisma: sequential vs interactive `$transaction`
 - 🟢 Database seeding with `prisma db seed`
 
-### 5.6 — MongoDB & Mongoose Essentials
-- 🔴 Document model vs Relational model (when to use NoSQL)
-- 🔴 Schema design patterns: Embedding vs Referencing tradeoffs
-- 🔴 CRUD operations with Mongoose + TypeScript typing
-- 🟡 Aggregation pipeline: `$match`, `$group`, `$project`, `$lookup`, `$unwind`
-- 🟡 Indexes in MongoDB & `explain('executionStats')`
+### 5.6 — MongoDB & Mongoose Essentials (Secondary)
+- 🟢 Document model vs Relational model (when to use NoSQL)
+- 🟢 Schema design patterns: Embedding vs Referencing tradeoffs
+- 🟢 CRUD operations with Mongoose + TypeScript typing
+- 🟢 Aggregation pipeline: `$match`, `$group`, `$project`, `$lookup`, `$unwind`
+- 🟢 Indexes in MongoDB & `explain('executionStats')`
 - 🟢 Multi-document transactions in MongoDB
 
-> **🚪 Gate 5:** Quiz 80%+, all exercises green, mini-build (multi-table schema design with complex queries and Prisma migrations), explain-back ×3.
+### 5.7 — PostgreSQL & Prisma Production Reliability & Operations
+- 🔴 Database connection pooling: PgBouncer, Prisma connection pool sizing, diagnosing pool starvation
+- 🔴 Handling DB connection dropouts, transient network failures, and retry backoff strategies
+- 🔴 Safe migration strategies: zero-downtime expand-and-contract pattern, avoiding table-locking `ALTER TABLE`
+- 🟡 Read replicas vs primary database: replication lag, routing read queries to replicas
+- 🔴 PostgreSQL JSONB: querying nested documents (`->`, `->>`), JSONB operators (`@>`), GIN indexes for JSONB
+- 🟡 Database backup and disaster recovery: logical backups (`pg_dump`, `pg_restore`) vs physical point-in-time recovery
+- 🔴 Slow query optimization: finding N+1 queries in Prisma, utilizing `$queryRaw` when ORM abstractions generate poor SQL
+
+> **🛠️ Mini-Build:** High-concurrency PostgreSQL schema with Prisma ORM, JSONB attribute indexing, transactional row locking for issue assignment, and automated seed factories.  
+> **🚪 Completion Gate:** Explain: Four ACID isolation levels and their concurrency anomalies | Implement: Safe Prisma migration using expand-and-contract pattern | Debug: Diagnose and eliminate a deadlock under concurrent issue upvotes | Apply: Optimize slow issue search query using composite index and GIN index on JSONB.
 
 ---
 
-## Phase 6 — ⚛️ React & Next.js (App Router)
-*Frontend interviews test hooks, rendering behavior, and modern SSR patterns. RSC is non-negotiable.*
+## Phase 6 — ⚛️ React & Next.js App Router (Production Application Quality)
+*Weeks 14–16 (24-Week Plan) | 4–5 hrs/day*
+
+**🎯 Learning Outcomes:**
+- Architect React applications leveraging React Server Components for zero-bundle data fetching.
+- Implement optimistic mutations with automatic error rollback using Server Actions and `useOptimistic`.
+- Diagnose and resolve Next.js hydration errors and multi-tier cache staleness issues.
+- Analyze and optimize production bundle sizes with bundle analyzers and code splitting.
+
+**🏗️ Project Anchor:**  
+Collab-Code & Smart City: Build the interactive citizen dashboard with real-time upvoting, dynamic status filters, Server Actions form handling, and accessible modal views.
 
 ### 6.1 — React Internals & Rendering
 - 🔴 Virtual DOM and reconciliation algorithm
@@ -471,12 +622,31 @@
 - 🟡 Server Action form validation with Zod
 - 🟡 `next/image` optimization, `next/font`, Metadata API for SEO
 
-> **🚪 Gate 6:** Quiz 80%+, all exercises green, mini-build (SSR dashboard with RSC, Server Actions, auth, and optimistic UI), explain-back ×3.
+### 6.10 — React & Next.js Production Quality, Hydration & Resilience
+- 🔴 Hydration errors deep-dive: SSR vs CSR mismatch causes, debugging hydration warnings, two-pass rendering
+- 🔴 Next.js multi-tier caching model: Request Memoization, Data Cache, Full Route Cache, Router Cache
+- 🟡 Server state management: TanStack Query (React Query) for client cache invalidation, polling, and background refetching
+- 🔴 Optimistic updates with automatic rollback on network failure in Server Actions & client queries
+- 🔴 Resilient file uploads in React: drag-and-drop, progress indication, presigned S3 URLs, client-side validation
+- 🟡 Bundle analysis: diagnosing heavy packages using `@next/bundle-analyzer`, dynamic imports, code splitting
+- 🔴 End-to-end authentication in App Router: middleware route protection, cookie synchronization, session refreshing
+
+> **🛠️ Mini-Build:** Production Next.js App Router dashboard featuring Server Components data loading, Server Actions forms with Zod, optimistic upvoting with rollback, and bundle visualizer report.  
+> **🚪 Completion Gate:** Explain: React Server Components vs Client Components serialization boundaries | Implement: Optimistic UI mutation with error rollback in a Server Action | Debug: Track down and fix a Next.js hydration mismatch caused by client-only state | Apply: Analyze bundle output and split heavy code-editor components dynamically.
 
 ---
 
-## Phase 7 — 🔴 Redis, Queues & Real-Time
-*The multiplier topics that separate junior from senior. In-memory caching, asynchronous background jobs, and WebSockets.*
+## Phase 7 — 🔴 Redis, Resilient Background Jobs & WebSockets
+*Weeks 17–18 (24-Week Plan) | 4–5 hrs/day*
+
+**🎯 Learning Outcomes:**
+- Design resilient caching layers with Cache-Aside pattern, TTL, and cache stampede protection.
+- Process asynchronous background tasks with BullMQ handling retries, exponential backoff, and dead-letter queues.
+- Architect WebSocket connection lifecycles with room namespaces, token auth, and reconnect state resync.
+- Eliminate duplicate job execution by designing idempotent workers and transactional deduplication keys.
+
+**🏗️ Project Anchor:**  
+Collab-Code & Smart City: Collab-Code requires bidirectional WebSockets with Redis adapter for real-time code sync & presence; Smart City utilizes BullMQ for processing citizen email/SMS alerts and image thumbnails.
 
 ### 7.1 — Redis Fundamentals
 - 🔴 Redis data structures: String, Hash, List, Set, Sorted Set
@@ -509,12 +679,30 @@
 - 🟡 Scaling WebSockets across multiple servers: sticky sessions & Redis adapter
 - 🟡 Server-Sent Events (SSE) vs WebSockets tradeoffs
 
-> **🚪 Gate 7:** Quiz 80%+, all exercises green, mini-build (real-time notification system with Redis pub/sub + Socket.io), explain-back ×3.
+### 7.5 — Distributed Failure Scenarios: Jobs, Caching & Real-Time Recovery
+- 🔴 Handling duplicate jobs and designing strictly idempotent queue workers
+- 🔴 Message delivery semantics: at-most-once vs at-least-once delivery tradeoffs in queues and sockets
+- 🔴 Worker crashes & stalled job recovery: lock renewals, `stalledInterval`, and dead-letter queues (DLQ)
+- 🔴 Retry storms and thundering herds: exponential backoff with random jitter in background jobs and network retries
+- 🔴 WebSocket reconnection resilience: heartbeats/ping-pong, connection drops, and missed message buffering on client reconnect
+- 🟡 Redis memory eviction policies (LRU, LFU, volatile vs allkeys) and handling Redis memory exhaustion
+
+> **🛠️ Mini-Build:** Real-time collaborative room with WebSocket reconnect state resync + BullMQ resilient notification queue with idempotent worker processing.  
+> **🚪 Completion Gate:** Explain: At-least-once delivery implications and how to guarantee worker idempotency | Implement: BullMQ job worker with exponential backoff, jitter, and dead-letter queue routing | Debug: Fix a WebSocket reconnect bug where clients miss state updates during reconnection | Apply: Scale Socket.io across two Node processes using Redis Pub/Sub adapter.
 
 ---
 
-## Phase 8 — 🧪 Testing
-*Testing is mandatory in top engineering teams. Unit, integration, and E2E — know when to use each.*
+## Phase 8 — 🧪 Comprehensive Testing & Quality Engineering
+*Weeks 19–20 (24-Week Plan) | 4–5 hrs/day*
+
+**🎯 Learning Outcomes:**
+- Write maintainable unit and mock tests with Vitest using the Arrange-Act-Assert (AAA) pattern.
+- Execute true database integration tests against real PostgreSQL instances with test isolation.
+- Automate authentication and RBAC authorization regression test matrices.
+- Create resilient End-to-End browser tests with Playwright using Page Object Model (POM).
+
+**🏗️ Project Anchor:**  
+Smart City & Collab-Code: Build integration tests for citizen issue registration -> staff assignment -> status resolution; E2E test the full citizen flow with image attachment.
 
 ### 8.1 — Testing Fundamentals & Philosophy
 - 🔴 Testing pyramid vs Testing trophy
@@ -550,12 +738,30 @@
 - 🟡 Network interception: `page.route()`
 - 🟢 Visual regression snapshots
 
-> **🚪 Gate 8:** Quiz 80%+, all exercises green, mini-build (full test suite for a feature: unit + API integration + Playwright E2E), explain-back ×3.
+### 8.6 — Advanced Testing: DB Integration, Security Regressions & Load Testing
+- 🔴 True database integration testing: using test databases, automated migrations, seeds, and transactional test rollbacks
+- 🔴 Authentication & Authorization regression tests: verifying RBAC permission matrices (guest, citizen, staff, admin)
+- 🟡 API schema contract testing: ensuring frontend and backend contracts stay synchronized
+- 🟡 Load and stress testing: benchmarking API latency and throughput under high concurrency using Autocannon or k6
+- 🔴 Critical business flow testing: writing tests for core end-to-end user journeys over chasing arbitrary 100% coverage
+- 🟡 Flaky test prevention: isolating async timing, avoiding hardcoded sleeps, using polling assertions
+
+> **🛠️ Mini-Build:** Automated test suite encompassing unit tests, RBAC security regression tests, Supertest database integration tests, and Playwright E2E issue submission flow.  
+> **🚪 Completion Gate:** Explain: Why testing user behavior is superior to testing component implementation details | Implement: Supertest database integration test with transaction rollback | Debug: Diagnose and fix a flaky async test caused by unhandled timers | Apply: Write a Playwright E2E test verifying RBAC permission boundaries.
 
 ---
 
-## Phase 9 — 🐳 DevOps: Docker, CI/CD & AWS
-*Ship code reliably. Containerize applications, automate checks via CI/CD, and understand core cloud services.*
+## Phase 9 — 🐳 DevOps, Docker, CI/CD, AWS & Observability
+*Weeks 21–22 (24-Week Plan) | 4–5 hrs/day*
+
+**🎯 Learning Outcomes:**
+- Package Node and Next.js applications into secure, lightweight (<150MB) multi-stage Docker images.
+- Orchestrate local multi-service stacks (Web + API + PostgreSQL + Redis) with Docker Compose and healthchecks.
+- Automate linting, type-checking, testing, and container deployment via GitHub Actions CI/CD.
+- Instrument applications with structured JSON logging, RED metrics, and zero-downtime database migration scripts.
+
+**🏗️ Project Anchor:**  
+Smart City & Collab-Code: Containerize both applications; create Docker Compose for local development; deploy to cloud VPS / AWS EC2 with S3 image storage and budget alerts.
 
 ### 9.1 — Docker Fundamentals
 - 🔴 Images vs Containers vs Volumes vs Networks
@@ -574,11 +780,11 @@
 ### 9.3 — GitHub Actions CI/CD
 - 🔴 Workflow files: triggers (push, pull_request), jobs, steps
 - 🔴 Running linting, type-checking, and tests in CI
-- 🟡 Caching dependencies: `pnpm` store cache
+- 🟡 Caching dependencies: pnpm/npm store cache
 - 🔴 Secrets management and environment variables
 - 🟡 Building and publishing Docker images to GitHub Container Registry
 
-### 9.4 — AWS Cloud Basics
+### 9.4 — AWS Cloud Basics & Cost Safeguards
 - 🔴 EC2: virtual compute instances, security groups, SSH keys
 - 🔴 S3: object storage, bucket policies, presigned URLs for secure uploads
 - 🟡 RDS: managed PostgreSQL, automated backups, multi-AZ
@@ -593,12 +799,30 @@
 - 🟡 Health check endpoints (`/health/live` vs `/health/ready`)
 - 🟡 Managing environments: dev, staging, production configuration
 
-> **🚪 Gate 9:** Quiz 80%+, all exercises green, mini-build (Dockerized full-stack app with GitHub Actions CI pipeline), explain-back ×3.
+### 9.6 — Production Observability, Security & Deployment Safeguards
+- 🔴 Application telemetry: RED method metrics (Rate, Errors, Duration) and measuring latency percentiles (p50, p95, p99)
+- 🟡 Distributed tracing fundamentals: trace IDs, correlation IDs across HTTP requests, queues, and database calls
+- 🔴 Automated deployment rollbacks: health check failure triggers, blue-green switchback, rolling back bad commits
+- 🔴 Safe database migrations in CI/CD pipelines: running migrations before app container cutover without downtime
+- 🟡 Container security: vulnerability scanning with Trivy/Docker Scout, non-root users, minimal base images (Alpine/Distroless)
+- 🟡 Cloud cost guardrails: AWS billing alerts, stopping dev instances, tracking egress costs, staying in free tiers
+
+> **🛠️ Mini-Build:** Production Dockerized full-stack deployment with Docker Compose, automated GitHub Actions CI pipeline, S3 presigned upload integration, and health check endpoints.  
+> **🚪 Completion Gate:** Explain: Multi-stage Docker build layer caching and non-root security principles | Implement: GitHub Actions workflow with pnpm/npm caching, lint, test, and container build | Debug: Troubleshoot a container crash loop caused by missing runtime environment variables | Apply: Execute zero-downtime database migration during container rollout.
 
 ---
 
-## Phase 10 — 🏗️ System Design & Architecture
-*Think at scale. Design resilient distributed systems that handle millions of requests.*
+## Phase 10 — 🏗️ Practical System Design & Capstone Architecture
+*Weeks 23–24 (24-Week Plan) | 4–5 hrs/day*
+
+**🎯 Learning Outcomes:**
+- Perform back-of-the-envelope capacity estimations (QPS, storage, bandwidth, memory) for real-world user bases.
+- Identify architectural bottlenecks (CPU vs disk I/O vs network latency) and articulate concrete failure mitigation plans.
+- Design standard interview systems (Rate Limiter, URL Shortener, Notification Engine, Collaborative Workspace).
+- Conduct a comprehensive production readiness and architectural audit of your two flagship projects.
+
+**🏗️ Project Anchor:**  
+Collab-Code & Smart City: Formalize complete system architecture diagrams, data flow specifications, failure mode recovery plans, and scalability benchmarks for both portfolio projects.
 
 ### 10.1 — Architecture Patterns
 - 🔴 Monolith vs Microservices: real-world tradeoffs and migration
@@ -624,56 +848,55 @@
 - 🟡 Design an S3-style File Upload Service: presigned URLs, multipart uploads
 
 ### 10.4 — Monorepo Architecture
-- 🟡 pnpm workspaces: dependency hoisting, `workspace:*` protocol
+- 🟡 pnpm/npm workspaces: dependency hoisting, workspace packages
 - 🟡 Sharing TypeScript types between frontend and backend
 - 🟡 Internal shared packages (eslint-config, tsconfig, ui, utils)
 - 🟢 Turborepo / Nx build caching and task pipelines
 
-> **🚪 Gate 10:** Quiz 80%+, all exercises green, mini-build (complete System Design document & prototype for a URL shortener), explain-back ×3.
+### 10.5 — Practical System Design: Capacity Estimation, Bottlenecks & Operational Costs
+- 🔴 Back-of-the-envelope capacity calculations: estimating QPS, peak throughput, storage, bandwidth, and RAM for 100K DAU
+- 🔴 Bottleneck analysis: identifying CPU bound vs memory vs disk I/O vs network latency bottlenecks in real architectures
+- 🔴 Explicit failure scenarios: primary database failover, Redis eviction/outage, third-party API outage resilience
+- 🔴 Real-world reliability tradeoffs: Consistency vs Availability in collaborative editing (Collab-Code) vs civic reporting (Smart City)
+- 🟡 Operational cost analysis of architectural choices: serverless vs long-running containers, CDN caching cost savings
+- 🔴 Production architecture review and hardening of Collab-Code and Smart City Issue Reporting
+
+> **🛠️ Mini-Build:** Complete System Design document, capacity calculations, and working reference prototype for an API Rate Limiter with Sliding Window algorithm.  
+> **🚪 Completion Gate:** Explain: Back-of-the-envelope QPS and storage math for 500,000 daily active users | Implement: Redis sliding-window log rate limiter with IP and user token keys | Debug: Resolve a single-point-of-failure in a primary-replica database setup | Apply: Defend Collab-Code and Smart City architectural decisions in a simulated senior interview.
 
 ---
 
-## Phase 11 — 🐱 NestJS (Enterprise Backend)
-*Enterprise-grade Node.js framework. Heavily used in large companies. Built on decorators, modules, and Dependency Injection.*
+## Phase 11 — 🐱 NestJS Enterprise Backend (Bonus Extension)
+*Post-Core Extension (Bonus) | Optional for Enterprise Placement Rounds*
+
+**🎯 Learning Outcomes:**
+- Understand enterprise architectural structure (Inversion of Control and Dependency Injection).
+- Build modular REST APIs with NestJS Controllers, Services, Guards, and Pipes.
+- Integrate Prisma and auto-generate Swagger OpenAPI documentation in NestJS.
+
+**🏗️ Project Anchor:**  
+Enterprise Reference: Learn how Smart City Issue Reporting APIs would be structured in a large-scale corporate enterprise codebase using NestJS modular architecture.
 
 ### 11.1 — NestJS Architecture & Dependency Injection
-- 🔴 Modules: `@Module` decorator, feature modules, global modules
-- 🔴 Controllers: `@Controller`, routing, request/response decorators
-- 🔴 Providers: `@Injectable`, service layer
-- 🔴 Dependency Injection: how IoC container works under the hood
-- 🟡 Lifecycle hooks: `onModuleInit`, `onApplicationBootstrap`
+- 🟡 Modules: `@Module` decorator, feature modules, global modules
+- 🟡 Controllers: `@Controller`, routing, request/response decorators
+- 🟡 Providers: `@Injectable`, service layer
+- 🟡 Dependency Injection: how IoC container works under the hood
+- 🟢 Lifecycle hooks: `onModuleInit`, `onApplicationBootstrap`
 
 ### 11.2 — Pipes, Guards, Interceptors & Filters
-- 🔴 Pipes: validation and data transformation (`ValidationPipe`)
-- 🔴 Guards: authentication and authorization (`@UseGuards`)
-- 🟡 Interceptors: logging, response mapping, caching
-- 🟡 Exception Filters: catching and formatting HTTP exceptions
-- 🔴 NestJS execution order: Middleware → Guard → Interceptor → Pipe → Handler
+- 🟡 Pipes: validation and data transformation (`ValidationPipe`)
+- 🟡 Guards: authentication and authorization (`@UseGuards`)
+- 🟢 Interceptors: logging, response mapping, caching
+- 🟢 Exception Filters: catching and formatting HTTP exceptions
+- 🟡 NestJS execution order: Middleware → Guard → Interceptor → Pipe → Handler
 
 ### 11.3 — NestJS with Prisma & Swagger
-- 🔴 Prisma Module and Service integration in NestJS
-- 🔴 DTOs with class-validator or Zod integration
-- 🟡 Swagger / OpenAPI generation: `@ApiTags`, `@ApiResponse`
-- 🟡 Authentication with Passport.js & JWT Strategy
-- 🟡 Configuration management with `@nestjs/config`
+- 🟡 Prisma Module and Service integration in NestJS
+- 🟡 DTOs with class-validator or Zod integration
+- 🟢 Swagger / OpenAPI generation: `@ApiTags`, `@ApiResponse`
+- 🟢 Authentication with Passport.js & JWT Strategy
+- 🟢 Configuration management with `@nestjs/config`
 
-> **🚪 Gate 11:** Quiz 80%+, all exercises green, mini-build (NestJS CRUD API with Prisma, auth, and Swagger docs), explain-back ×3.
-
----
-
-## 🏁 Capstone Project
-Production-grade SaaS application incorporating the complete stack.
-
----
-
-## 📊 Summary Metrics
-| Metric | Value |
-|---|---|
-| Total Phases | **12** (0 through 11) |
-| Total Topics | **73** |
-| Total Subtopics | **~385** |
-| 🔴 Critical Subtopics | **~195** |
-| 🟡 Important Subtopics | **~140** |
-| 🟢 Good-to-know Subtopics | **~50** |
-| Mini-Builds | **12** |
-| Gates | **12** |
+> **🛠️ Mini-Build:** NestJS CRUD API with Prisma, JWT authentication guard, and auto-generated Swagger documentation.  
+> **🚪 Completion Gate:** Explain: How the NestJS IoC container resolves dependencies | Implement: NestJS ValidationPipe with Zod/class-validator | Debug: Fix a circular dependency issue between two NestJS modules | Apply: Build a modular CRUD resource with Swagger docs.

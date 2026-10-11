@@ -267,7 +267,12 @@ export default function App() {
                     <div className="phase-title-group">
                       <span className="phase-emoji">{filteredPhase.emoji}</span>
                       <div className="phase-meta">
-                        <span className="phase-number">Phase {filteredPhase.number}</span>
+                        <div className="phase-meta-tags">
+                          <span className="phase-number">Phase {filteredPhase.number}</span>
+                          {filteredPhase.weeks && (
+                            <span className="phase-weeks-badge">{filteredPhase.weeks}</span>
+                          )}
+                        </div>
                         <h2 className="phase-title">{filteredPhase.title}</h2>
                       </div>
                     </div>
@@ -374,15 +379,31 @@ export default function App() {
                       })}
                     </div>
 
-                    {/* Phase Footer (Gate & Mini-Build) */}
+                    {/* Phase Footer (Project Anchor, Outcomes, Mini-Build, Gate) */}
                     <div className="phase-footer">
-                      <div className="footer-section gate">
-                        <span className="footer-section-label">🚪 Gate Requirement</span>
-                        <p className="footer-section-text">{filteredPhase.gate}</p>
-                      </div>
+                      {filteredPhase.projectContext && (
+                        <div className="footer-section project-context">
+                          <span className="footer-section-label">🎯 Project Anchor</span>
+                          <p className="footer-section-text">{filteredPhase.projectContext}</p>
+                        </div>
+                      )}
+                      {filteredPhase.outcomes && filteredPhase.outcomes.length > 0 && (
+                        <div className="footer-section outcomes">
+                          <span className="footer-section-label">📋 Learning Outcomes</span>
+                          <ul className="footer-outcomes-list">
+                            {filteredPhase.outcomes.map((outcome, idx) => (
+                              <li key={idx}>{outcome}</li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
                       <div className="footer-section mini-build">
                         <span className="footer-section-label">🛠️ Mini-Build</span>
                         <p className="footer-section-text">{filteredPhase.miniBuild}</p>
+                      </div>
+                      <div className="footer-section gate">
+                        <span className="footer-section-label">🚪 Completion Gate (Explain, Implement, Debug, Apply)</span>
+                        <p className="footer-section-text">{filteredPhase.gate}</p>
                       </div>
                     </div>
                   </div>

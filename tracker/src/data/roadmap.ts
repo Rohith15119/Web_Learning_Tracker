@@ -1,6 +1,8 @@
 // ============================================================
 // Full-Stack TypeScript Mastery — Complete Roadmap Data
 // Single source of truth for both ROADMAP.md and the tracker app
+// Structured for a 24-Week Timeline (4-5 hrs/day)
+// Anchored in Collab-Code & Smart City Issue Reporting projects
 // ============================================================
 
 export type Importance = "critical" | "important" | "good-to-know";
@@ -23,6 +25,9 @@ export interface Phase {
   title: string;
   emoji: string;
   description: string;
+  weeks?: string;
+  outcomes?: string[];
+  projectContext?: string;
   topics: Topic[];
   gate: string;
   miniBuild: string;
@@ -30,17 +35,26 @@ export interface Phase {
 
 export const roadmap: Phase[] = [
   // ============================================================
-  // PHASE 0 — TypeScript Core
+  // PHASE 0 — TypeScript Core & Developer Workflow
   // ============================================================
   {
     id: "phase-0",
     number: 0,
-    title: "TypeScript Core",
+    title: "TypeScript Core & Developer Workflow",
     emoji: "🔷",
     description:
-      "The language everything else is built on. Master the type system before touching any framework.",
-    gate: "Quiz 80%+, all exercises green, mini-build complete, explain-back ×3",
-    miniBuild: "Type-safe event emitter with generics",
+      "The language and tooling everything else is built on. Master strict typing, advanced type mechanics, and professional Git collaboration workflows.",
+    weeks: "Weeks 1–2 (24-Week Plan)",
+    outcomes: [
+      "Configure strict tsconfig compiler settings for modern ESM projects with zero implicit any",
+      "Model complex domain entities using discriminated unions, generics, mapped types, and satisfies",
+      "Validate untrusted input at runtime boundaries while maintaining compile-time type safety",
+      "Execute professional Git branching, interactive rebasing, merge conflict resolution, and atomic PR reviews",
+    ],
+    projectContext:
+      "Collab-Code & Smart City: Define shared TypeScript domain models (Document, EditOperation, IssueReport, UserRole) and establish the Git branching & PR workflow for both repositories.",
+    gate: "Explain: tsc pipeline & structural vs nominal typing | Implement: Generic type-safe event emitter | Debug: Resolve a 3-way Git merge conflict & type-widening bug | Apply: Commit clean type definitions to project repo using atomic PR commits.",
+    miniBuild: "Type-Safe In-Memory Event Emitter with generic event maps, payload validation, and clean Git feature branch workflow with signed tags.",
     topics: [
       {
         id: "0-1",
@@ -156,21 +170,55 @@ export const roadmap: Phase[] = [
           { id: "0-9-7", title: "package.json exports field", importance: "important" },
         ],
       },
+      {
+        id: "0-10",
+        title: "Git & Developer Collaboration Workflow",
+        subtopics: [
+          { id: "0-10-1", title: "Git branching models: feature branches, trunk-based vs Git-Flow", importance: "critical" },
+          { id: "0-10-2", title: "Merging vs Rebasing: interactive rebase (git rebase -i), squash merging, commit cleanliness", importance: "critical" },
+          { id: "0-10-3", title: "Merge conflict resolution mechanics, 3-way diffs, aborting rebases safely", importance: "critical" },
+          { id: "0-10-4", title: "Safe undos: git revert vs git reset (--soft, --mixed, --hard) vs git restore", importance: "critical" },
+          { id: "0-10-5", title: "Pull Request lifecycle: atomic commits, conventional commits, constructive code reviews", importance: "important" },
+          { id: "0-10-6", title: "Release tags (git tag -a), Semantic Versioning (SemVer), and changelogs", importance: "important" },
+          { id: "0-10-7", title: "Dependency lockfile hygiene: package-lock.json integrity, deterministic builds, npm ci vs npm install", importance: "critical" },
+        ],
+      },
+      {
+        id: "0-11",
+        title: "Advanced TypeScript & Boundary Validation",
+        subtopics: [
+          { id: "0-11-1", title: "Structural typing (duck typing) vs nominal typing, and excess property check rules", importance: "critical" },
+          { id: "0-11-2", title: "The satisfies operator: validating shapes without widening or losing literal types", importance: "critical" },
+          { id: "0-11-3", title: "keyof operator and Indexed Access types (T[K], T[number])", importance: "critical" },
+          { id: "0-11-4", title: "Function overloads: implementation signatures vs call signatures", importance: "important" },
+          { id: "0-11-5", title: "Runtime validation at untrusted boundaries: why compile-time types alone cannot validate API input", importance: "critical" },
+          { id: "0-11-6", title: "Ambient declarations, declare global, and augmenting third-party library types", importance: "important" },
+        ],
+      },
     ],
   },
 
   // ============================================================
-  // PHASE 1 — JavaScript Runtime & Async Patterns
+  // PHASE 1 — JavaScript Runtime, Concurrency & Reliability
   // ============================================================
   {
     id: "phase-1",
     number: 1,
-    title: "JavaScript Runtime & Async Patterns",
+    title: "JavaScript Runtime, Concurrency & Reliability",
     emoji: "⚡",
     description:
-      "The #1 interview topic. Event loop, promises, closures — asked everywhere from startups to FAANG.",
-    gate: "Quiz 80%+, all exercises green, mini-build complete, explain-back ×3",
-    miniBuild: "Async task runner with retry + cancellation + concurrency limit",
+      "The #1 interview filter. Event loop, microtask execution order, memory management, closures, prototypal inheritance, and async race condition prevention.",
+    weeks: "Weeks 3–4 (24-Week Plan)",
+    outcomes: [
+      "Predict and trace event loop execution order across synchronous code, microtasks, timers, and I/O",
+      "Implement robust asynchronous coordination patterns with timeout, cancellation, and concurrency limits",
+      "Diagnose and eliminate memory leaks (lingering listeners, timer retention, circular closures)",
+      "Prevent async race conditions in stateful client operations and server request handlers",
+    ],
+    projectContext:
+      "Collab-Code: Prevent race conditions when merging concurrent keystrokes from multiple users; eliminate memory leaks in active code-editing rooms when users disconnect.",
+    gate: "Explain: Call stack, macrotask, and microtask queue priorities | Implement: Promise.all from scratch with fail-fast semantics | Debug: Find and fix memory leak in unclosed WebSocket listener | Apply: Add AbortSignal timeout to code execution API calls in Collab-Code.",
+    miniBuild: "Async Task Runner with retry + exponential backoff + cancellation (AbortSignal) + concurrency limit pool.",
     topics: [
       {
         id: "1-1",
@@ -268,6 +316,18 @@ export const roadmap: Phase[] = [
           { id: "1-8-4", title: "Use cases: lazy evaluation, streaming data", importance: "good-to-know" },
         ],
       },
+      {
+        id: "1-9",
+        title: "JavaScript Reliability, Memory & Concurrency Gotchas",
+        subtopics: [
+          { id: "1-9-1", title: "Object references, shallow copies (spread, Object.assign) vs deep copies (structuredClone)", importance: "critical" },
+          { id: "1-9-2", title: "Equality and coercion: == vs === vs Object.is (-0, NaN, object reference identity)", importance: "critical" },
+          { id: "1-9-3", title: "Immutability vs in-place mutation pitfalls in state and async workflows", importance: "critical" },
+          { id: "1-9-4", title: "Async race conditions: stale responses, unsynchronized shared memory, out-of-order execution", importance: "critical" },
+          { id: "1-9-5", title: "Memory leaks in JS: lingering event listeners, timer retention, detached DOM nodes, closures holding large scopes", importance: "critical" },
+          { id: "1-9-6", title: "Debugging Node.js and browser JS using breakpoints, inspector, source maps, and memory profiling", importance: "important" },
+        ],
+      },
     ],
   },
 
@@ -280,9 +340,18 @@ export const roadmap: Phase[] = [
     title: "Web & Browser Architecture Fundamentals",
     emoji: "🌐",
     description:
-      "How the web actually works under the hood: networking, browser rendering engines, layout mechanics, security, and performance.",
-    gate: "Quiz 80%+, all exercises green, mini-build complete, explain-back ×3",
-    miniBuild: "Interactive Critical Rendering Path visualizer & security header analyzer",
+      "How the web actually works under the hood: networking lifecycles, browser rendering engines, accessible layout mechanics, web security, and performance metrics.",
+    weeks: "Weeks 5–6 (24-Week Plan)",
+    outcomes: [
+      "Trace the full network journey from URL entry to first byte (DNS, TCP 3-way, TLS 1.3 handshake, HTTP/2/3)",
+      "Optimize Critical Rendering Path by eliminating parser-blocking resources and layout thrashing",
+      "Defend applications against OWASP Top 10 web vulnerabilities (XSS, CSRF, Clickjacking, CORS misconfiguration)",
+      "Build fully accessible (a11y), responsive UI layouts adhering to semantic HTML and keyboard navigation standards",
+    ],
+    projectContext:
+      "Smart City Issue Reporting: Public citizen reporting portal requires WCAG accessibility, responsive mobile layouts, secure cookie auth, and fast LCP image rendering on slow 4G connections.",
+    gate: "Explain: Critical Rendering Path (DOM -> CSSOM -> Layout -> Paint -> Composite) | Implement: Secure CORS & Content Security Policy (CSP) headers | Debug: Diagnose and fix layout thrashing causing jank in scroll events | Apply: Make Smart City issue submission form 100% accessible with keyboard focus trap.",
+    miniBuild: "Interactive Critical Rendering Path visualizer & security header analyzer (evaluating CORS, CSP, HSTS, X-Frame-Options).",
     topics: [
       {
         id: "2-1",
@@ -360,21 +429,42 @@ export const roadmap: Phase[] = [
           { id: "2-6-6", title: "Image optimization: WebP/AVIF, responsive images (srcset, sizes), lazy loading", importance: "important" },
         ],
       },
+      {
+        id: "2-7",
+        title: "Frontend Engineering Foundations: Accessibility, Layout & UI States",
+        subtopics: [
+          { id: "2-7-1", title: "Semantic HTML elements (main, nav, article, section, dialog) vs div soup", importance: "critical" },
+          { id: "2-7-2", title: "Web accessibility (a11y): ARIA attributes (aria-label, aria-expanded, aria-live), contrast, screen readers", importance: "critical" },
+          { id: "2-7-3", title: "Keyboard navigation & focus management: tabindex, visible focus rings, accessible modal focus traps", importance: "critical" },
+          { id: "2-7-4", title: "Responsive design: mobile-first approach, fluid typography (clamp()), container queries vs media queries", importance: "important" },
+          { id: "2-7-5", title: "Essential UI state design: loading skeletons, actionable error states, informative empty states", importance: "critical" },
+          { id: "2-7-6", title: "Accessible form controls: labels, error descriptions (aria-describedby), disabled vs aria-disabled", importance: "critical" },
+        ],
+      },
     ],
   },
 
   // ============================================================
-  // PHASE 3 — Node.js Core
+  // PHASE 3 — Node.js Core, Streams & Reliability
   // ============================================================
   {
     id: "phase-3",
     number: 3,
-    title: "Node.js Core",
+    title: "Node.js Core, Streams & Reliability",
     emoji: "🟢",
     description:
-      "Understand how your server runtime works. Streams, file system, processes — the building blocks.",
-    gate: "Quiz 80%+, all exercises green, mini-build complete, explain-back ×3",
-    miniBuild: "Streaming CSV parser with Transform streams",
+      "Understand how your server runtime works without framework magic. libuv event loop, thread pool, memory-efficient streams, child processes, profiling, and graceful shutdown.",
+    weeks: "Weeks 7–8 (24-Week Plan)",
+    outcomes: [
+      "Explain the exact division of labor between V8, libuv event loop, and the 4-thread worker pool",
+      "Process large datasets and media files using Node Streams and pipeline() without memory ballooning",
+      "Profile CPU utilization and heap memory allocations to catch event loop lag and memory leaks",
+      "Implement zero-downtime graceful shutdown patterns handling active request draining",
+    ],
+    projectContext:
+      "Smart City: Stream citizen photo uploads directly to disk/storage using Transform streams without buffering whole files in RAM; ensure server drains active uploads on SIGTERM.",
+    gate: "Explain: When Node.js uses threads under the hood vs when it is single-threaded | Implement: Transform stream pipeline with backpressure handling | Debug: Identify event-loop blocking synchronous operation using Node inspector | Apply: Add graceful shutdown listener with 10s drain window to backend server.",
+    miniBuild: "Streaming CSV & Media processor with Transform streams, backpressure management, memory ceiling guard, and graceful shutdown.",
     topics: [
       {
         id: "3-1",
@@ -442,21 +532,42 @@ export const roadmap: Phase[] = [
           { id: "3-6-5", title: "Top-level await in ESM modules", importance: "good-to-know" },
         ],
       },
+      {
+        id: "3-7",
+        title: "Node.js Production Reliability, Profiling & Dependency Hygiene",
+        subtopics: [
+          { id: "3-7-1", title: "CPU and memory profiling in Node: taking heap snapshots, detecting memory leaks with --inspect", importance: "important" },
+          { id: "3-7-2", title: "Event loop lag monitoring & detecting main thread blocking operations", importance: "critical" },
+          { id: "3-7-3", title: "Strict environment variable validation on boot using Zod (failing fast on missing config)", importance: "critical" },
+          { id: "3-7-4", title: "Package management hygiene: semantic version ranges (^ vs ~ vs exact), peer dependencies, lockfile resolution", importance: "important" },
+          { id: "3-7-5", title: "Security vulnerability auditing: npm audit, evaluating CVE severity, malicious package detection", importance: "important" },
+          { id: "3-7-6", title: "Connection draining and zero-downtime graceful shutdown with active HTTP/WebSocket connections", importance: "critical" },
+        ],
+      },
     ],
   },
 
   // ============================================================
-  // PHASE 4 — HTTP, Express & REST API Design
+  // PHASE 4 — Production HTTP, Express & REST APIs
   // ============================================================
   {
     id: "phase-4",
     number: 4,
-    title: "HTTP, Express & REST APIs",
+    title: "Production HTTP, Express & REST APIs",
     emoji: "⚡",
     description:
-      "The bread and butter of backend engineering. Every backend interview starts here.",
-    gate: "Quiz 80%+, all exercises green, mini-build complete, explain-back ×3",
-    miniBuild: "Production-style REST API with auth, validation, error handling",
+      "Production-grade backend engineering. Middleware pipelines, type-safe Zod validation, JWT access/refresh token rotation, RBAC, idempotency keys, rate limiting, and OpenAPI contracts.",
+    weeks: "Weeks 9–10 (24-Week Plan)",
+    outcomes: [
+      "Construct robust Express middleware pipelines with centralized, typed error contracts",
+      "Implement secure authentication with bcrypt, short-lived JWTs, and refresh token rotation in HttpOnly cookies",
+      "Build idempotent API mutation endpoints with Idempotency-Key caching",
+      "Validate and ingest file uploads safely with strict MIME and size controls",
+    ],
+    projectContext:
+      "Smart City Issue Reporting: Implement citizen issue submission, staff assignment, role-based status updates (Citizen, Field Worker, Municipal Admin), and webhook triggers for resolved issues.",
+    gate: "Explain: Access token vs refresh token storage & rotation security tradeoffs | Implement: Idempotency middleware preventing duplicate issue submissions | Debug: Fix an authentication bypass vulnerability in RBAC middleware guard | Apply: Generate complete OpenAPI spec and run Supertest API integration tests.",
+    miniBuild: "Production REST API with JWT rotation, RBAC guards, Zod request validation, idempotency key support, Multer upload security, and auto-generated Swagger documentation.",
     topics: [
       {
         id: "4-1",
@@ -550,21 +661,44 @@ export const roadmap: Phase[] = [
           { id: "4-8-5", title: "Test database setup and teardown", importance: "important" },
         ],
       },
+      {
+        id: "4-9",
+        title: "Production API Reliability, Contracts & Ingestion",
+        subtopics: [
+          { id: "4-9-1", title: "Pagination at scale: offset-based vs cursor-based (keyset pagination) performance tradeoffs", importance: "critical" },
+          { id: "4-9-2", title: "Standardized API error contracts: RFC 7807 Problem Details and consistent JSON error envelopes", importance: "critical" },
+          { id: "4-9-3", title: "Idempotency keys (Idempotency-Key header): preventing duplicate charges/mutations on network retry", importance: "critical" },
+          { id: "4-9-4", title: "Request timeouts and server-side request cancellation with AbortController", importance: "important" },
+          { id: "4-9-5", title: "Request body payload limits (express.json({ limit: '1mb' })) and rate limiting bypass prevention", importance: "important" },
+          { id: "4-9-6", title: "Webhook signature verification: HMAC SHA-256 raw body validation for third-party events", importance: "critical" },
+          { id: "4-9-7", title: "Secure file uploads: Multer configuration, MIME-type sniffing vs extension validation, size limits, streaming to S3", importance: "critical" },
+          { id: "4-9-8", title: "OpenAPI / Swagger documentation generation for Express APIs (tsoa or swagger-jsdoc)", importance: "important" },
+        ],
+      },
     ],
   },
 
   // ============================================================
-  // PHASE 5 — Databases: SQL, Prisma & MongoDB
+  // PHASE 5 — PostgreSQL, Prisma & Production Data Layer
   // ============================================================
   {
     id: "phase-5",
     number: 5,
-    title: "Databases: SQL, Prisma & MongoDB",
+    title: "PostgreSQL, Prisma & Production Data Layer",
     emoji: "🗄️",
     description:
-      "SQL is asked in every backend round. Relational modeling, complex queries, indexing, and transactions.",
-    gate: "Quiz 80%+, all exercises green, mini-build complete, explain-back ×3",
-    miniBuild: "Multi-table schema design with complex queries and Prisma migrations",
+      "PostgreSQL and Prisma as your primary relational engine. Normalization, complex SQL (Window functions, CTEs), indexing, transactions, locking, connection pooling, and zero-downtime migrations. (MongoDB secondary).",
+    weeks: "Weeks 11–13 (24-Week Plan)",
+    outcomes: [
+      "Design normalized relational schemas (3NF) and write complex multi-table SQL queries with CTEs and Window functions",
+      "Read and optimize query execution plans using EXPLAIN ANALYZE and composite B-tree indexes",
+      "Prevent race conditions and deadlocks using ACID transactions and row-level locking (SELECT FOR UPDATE)",
+      "Manage PostgreSQL connection pooling with PgBouncer and execute safe, zero-downtime Prisma migrations",
+    ],
+    projectContext:
+      "Smart City Issue Reporting: Design the complete relational data model (Users, Issues, Comments, Upvotes, AuditLogs, Categories) with JSONB metadata and concurrent upvote transaction locking.",
+    gate: "Explain: Four ACID isolation levels and their concurrency anomalies (dirty, non-repeatable, phantom reads, write skew) | Implement: Safe Prisma migration using expand-and-contract pattern | Debug: Diagnose and eliminate a deadlock under concurrent issue upvotes | Apply: Optimize slow issue search query using composite index and GIN index on JSONB.",
+    miniBuild: "High-concurrency PostgreSQL schema with Prisma ORM, JSONB attribute indexing, transactional row locking for issue assignment, and automated seed factories.",
     topics: [
       {
         id: "5-1",
@@ -631,31 +765,53 @@ export const roadmap: Phase[] = [
       },
       {
         id: "5-6",
-        title: "MongoDB & Mongoose Essentials",
+        title: "MongoDB & Mongoose Essentials (Secondary)",
         subtopics: [
-          { id: "5-6-1", title: "Document model vs Relational model (when to use NoSQL)", importance: "critical" },
-          { id: "5-6-2", title: "Schema design patterns: Embedding vs Referencing tradeoffs", importance: "critical" },
-          { id: "5-6-3", title: "CRUD operations with Mongoose + TypeScript typing", importance: "critical" },
-          { id: "5-6-4", title: "Aggregation pipeline: $match, $group, $project, $lookup, $unwind", importance: "important" },
-          { id: "5-6-5", title: "Indexes in MongoDB & explain('executionStats')", importance: "important" },
+          { id: "5-6-1", title: "Document model vs Relational model (when to use NoSQL)", importance: "good-to-know" },
+          { id: "5-6-2", title: "Schema design patterns: Embedding vs Referencing tradeoffs", importance: "good-to-know" },
+          { id: "5-6-3", title: "CRUD operations with Mongoose + TypeScript typing", importance: "good-to-know" },
+          { id: "5-6-4", title: "Aggregation pipeline: $match, $group, $project, $lookup, $unwind", importance: "good-to-know" },
+          { id: "5-6-5", title: "Indexes in MongoDB & explain('executionStats')", importance: "good-to-know" },
           { id: "5-6-6", title: "Multi-document transactions in MongoDB", importance: "good-to-know" },
+        ],
+      },
+      {
+        id: "5-7",
+        title: "PostgreSQL & Prisma Production Reliability & Operations",
+        subtopics: [
+          { id: "5-7-1", title: "Database connection pooling: PgBouncer, Prisma connection pool sizing, diagnosing pool starvation", importance: "critical" },
+          { id: "5-7-2", title: "Handling DB connection dropouts, transient network failures, and retry backoff strategies", importance: "critical" },
+          { id: "5-7-3", title: "Safe migration strategies: zero-downtime expand-and-contract pattern, avoiding table-locking ALTER TABLE", importance: "critical" },
+          { id: "5-7-4", title: "Read replicas vs primary database: replication lag, routing read queries to replicas", importance: "important" },
+          { id: "5-7-5", title: "PostgreSQL JSONB: querying nested documents (->, ->>), JSONB operators (@>), GIN indexes for JSONB", importance: "critical" },
+          { id: "5-7-6", title: "Database backup and disaster recovery: logical backups (pg_dump, pg_restore) vs physical point-in-time recovery", importance: "important" },
+          { id: "5-7-7", title: "Slow query optimization: finding N+1 queries in Prisma, utilizing $queryRaw when ORM abstractions generate poor SQL", importance: "critical" },
         ],
       },
     ],
   },
 
   // ============================================================
-  // PHASE 6 — React & Next.js (App Router)
+  // PHASE 6 — React & Next.js App Router (Production Application Quality)
   // ============================================================
   {
     id: "phase-6",
     number: 6,
-    title: "React & Next.js (App Router)",
+    title: "React & Next.js App Router (Production Quality)",
     emoji: "⚛️",
     description:
-      "Frontend interviews test hooks, rendering behavior, and modern SSR patterns. RSC is non-negotiable.",
-    gate: "Quiz 80%+, all exercises green, mini-build complete, explain-back ×3",
-    miniBuild: "SSR dashboard with RSC, Server Actions, auth, and optimistic UI",
+      "Modern React and Next.js App Router engineering. Fiber reconciliation, hook rules, memoization, Server Components, Server Actions, multi-tier caching, optimistic UI, accessible forms, and hydration debugging.",
+    weeks: "Weeks 14–16 (24-Week Plan)",
+    outcomes: [
+      "Architect React applications leveraging React Server Components for zero-bundle data fetching",
+      "Implement optimistic mutations with automatic error rollback using Server Actions and useOptimistic",
+      "Diagnose and resolve Next.js hydration errors and multi-tier cache staleness issues",
+      "Analyze and optimize production bundle sizes with bundle analyzers and code splitting",
+    ],
+    projectContext:
+      "Collab-Code & Smart City: Build the interactive citizen dashboard with real-time upvoting, dynamic status filters, Server Actions form handling, and accessible modal views.",
+    gate: "Explain: React Server Components vs Client Components serialization boundaries | Implement: Optimistic UI mutation with error rollback in a Server Action | Debug: Track down and fix a Next.js hydration mismatch caused by client-only state | Apply: Analyze bundle output and split heavy code-editor components dynamically.",
+    miniBuild: "Production Next.js App Router dashboard featuring Server Components data loading, Server Actions forms with Zod, optimistic upvoting with rollback, and bundle visualizer report.",
     topics: [
       {
         id: "6-1",
@@ -762,21 +918,43 @@ export const roadmap: Phase[] = [
           { id: "6-9-4", title: "next/image optimization, next/font, Metadata API for SEO", importance: "important" },
         ],
       },
+      {
+        id: "6-10",
+        title: "React & Next.js Production Quality, Hydration & Resilience",
+        subtopics: [
+          { id: "6-10-1", title: "Hydration errors deep-dive: SSR vs CSR mismatch causes, debugging hydration warnings, two-pass rendering", importance: "critical" },
+          { id: "6-10-2", title: "Next.js multi-tier caching model: Request Memoization, Data Cache, Full Route Cache, Router Cache", importance: "critical" },
+          { id: "6-10-3", title: "Server state management: TanStack Query (React Query) for client cache invalidation, polling, and background refetching", importance: "important" },
+          { id: "6-10-4", title: "Optimistic updates with automatic rollback on network failure in Server Actions & client queries", importance: "critical" },
+          { id: "6-10-5", title: "Resilient file uploads in React: drag-and-drop, progress indication, presigned S3 URLs, client-side validation", importance: "critical" },
+          { id: "6-10-6", title: "Bundle analysis: diagnosing heavy packages using @next/bundle-analyzer, dynamic imports, code splitting", importance: "important" },
+          { id: "6-10-7", title: "End-to-end authentication in App Router: middleware route protection, cookie synchronization, session refreshing", importance: "critical" },
+        ],
+      },
     ],
   },
 
   // ============================================================
-  // PHASE 7 — Redis, Queues & Real-Time
+  // PHASE 7 — Redis, Resilient Background Jobs & WebSockets
   // ============================================================
   {
     id: "phase-7",
     number: 7,
-    title: "Redis, Queues & Real-Time",
+    title: "Redis, Resilient Background Jobs & WebSockets",
     emoji: "🔴",
     description:
-      "The multiplier topics that separate junior from senior. In-memory caching, asynchronous background jobs, and WebSockets.",
-    gate: "Quiz 80%+, all exercises green, mini-build complete, explain-back ×3",
-    miniBuild: "Real-time notification system with Redis pub/sub + Socket.io",
+      "Scaling the data and communication plane. Redis caching patterns, BullMQ background job queues with idempotent workers, failure recovery, Socket.io real-time rooms, and connection resilience.",
+    weeks: "Weeks 17–18 (24-Week Plan)",
+    outcomes: [
+      "Design resilient caching layers with Cache-Aside pattern, TTL, and cache stampede protection",
+      "Process asynchronous background tasks with BullMQ handling retries, exponential backoff, and dead-letter queues",
+      "Architect WebSocket connection lifecycles with room namespaces, token auth, and reconnect state resync",
+      "Eliminate duplicate job execution by designing idempotent workers and transactional deduplication keys",
+    ],
+    projectContext:
+      "Collab-Code & Smart City: Collab-Code requires bidirectional WebSockets with Redis adapter for real-time code sync & presence; Smart City utilizes BullMQ for processing citizen email/SMS alerts and image thumbnails.",
+    gate: "Explain: At-least-once delivery implications and how to guarantee worker idempotency | Implement: BullMQ job worker with exponential backoff, jitter, and dead-letter queue routing | Debug: Fix a WebSocket reconnect bug where clients miss state updates during reconnection | Apply: Scale Socket.io across two Node processes using Redis Pub/Sub adapter.",
+    miniBuild: "Real-time collaborative room with WebSocket reconnect state resync + BullMQ resilient notification queue with idempotent worker processing.",
     topics: [
       {
         id: "7-1",
@@ -825,21 +1003,42 @@ export const roadmap: Phase[] = [
           { id: "7-4-6", title: "Server-Sent Events (SSE) vs WebSockets tradeoffs", importance: "important" },
         ],
       },
+      {
+        id: "7-5",
+        title: "Distributed Failure Scenarios: Jobs, Caching & Real-Time Recovery",
+        subtopics: [
+          { id: "7-5-1", title: "Handling duplicate jobs and designing strictly idempotent queue workers", importance: "critical" },
+          { id: "7-5-2", title: "Message delivery semantics: at-most-once vs at-least-once delivery tradeoffs in queues and sockets", importance: "critical" },
+          { id: "7-5-3", title: "Worker crashes & stalled job recovery: lock renewals, stalledInterval, and dead-letter queues (DLQ)", importance: "critical" },
+          { id: "7-5-4", title: "Retry storms and thundering herds: exponential backoff with random jitter in background jobs and network retries", importance: "critical" },
+          { id: "7-5-5", title: "WebSocket reconnection resilience: heartbeats/ping-pong, connection drops, and missed message buffering on client reconnect", importance: "critical" },
+          { id: "7-5-6", title: "Redis memory eviction policies (LRU, LFU, volatile vs allkeys) and handling Redis memory exhaustion", importance: "important" },
+        ],
+      },
     ],
   },
 
   // ============================================================
-  // PHASE 8 — Testing
+  // PHASE 8 — Comprehensive Testing & Quality Engineering
   // ============================================================
   {
     id: "phase-8",
     number: 8,
-    title: "Testing",
+    title: "Comprehensive Testing & Quality Engineering",
     emoji: "🧪",
     description:
-      "Testing is mandatory in top engineering teams. Unit, integration, and E2E — know when to use each.",
-    gate: "Quiz 80%+, all exercises green, mini-build complete, explain-back ×3",
-    miniBuild: "Full test suite for a feature: unit + API integration + Playwright E2E",
+      "Enterprise test-driven engineering. Vitest unit tests, real database integration tests, RBAC security regressions, React Testing Library accessibility queries, and Playwright E2E automation for critical business flows.",
+    weeks: "Weeks 19–20 (24-Week Plan)",
+    outcomes: [
+      "Write maintainable unit and mock tests with Vitest using the Arrange-Act-Assert (AAA) pattern",
+      "Execute true database integration tests against real PostgreSQL instances with test isolation",
+      "Automate authentication and RBAC authorization regression test matrices",
+      "Create resilient End-to-End browser tests with Playwright using Page Object Model (POM)",
+    ],
+    projectContext:
+      "Smart City & Collab-Code: Build integration tests for citizen issue registration -> staff assignment -> status resolution; E2E test the full citizen flow with image attachment.",
+    gate: "Explain: Why testing user behavior is superior to testing component implementation details | Implement: Supertest database integration test with transaction rollback | Debug: Diagnose and fix a flaky async test caused by unhandled timers | Apply: Write a Playwright E2E test verifying RBAC permission boundaries.",
+    miniBuild: "Automated test suite encompassing unit tests, RBAC security regression tests, Supertest database integration tests, and Playwright E2E issue submission flow.",
     topics: [
       {
         id: "8-1",
@@ -895,21 +1094,42 @@ export const roadmap: Phase[] = [
           { id: "8-5-6", title: "Visual regression snapshots", importance: "good-to-know" },
         ],
       },
+      {
+        id: "8-6",
+        title: "Advanced Testing: DB Integration, Security Regressions & Load Testing",
+        subtopics: [
+          { id: "8-6-1", title: "True database integration testing: using test databases, automated migrations, seeds, and transactional test rollbacks", importance: "critical" },
+          { id: "8-6-2", title: "Authentication & Authorization regression tests: verifying RBAC permission matrices (guest, citizen, staff, admin)", importance: "critical" },
+          { id: "8-6-3", title: "API schema contract testing: ensuring frontend and backend contracts stay synchronized", importance: "important" },
+          { id: "8-6-4", title: "Load and stress testing: benchmarking API latency and throughput under high concurrency using Autocannon or k6", importance: "important" },
+          { id: "8-6-5", title: "Critical business flow testing: writing tests for core end-to-end user journeys over chasing arbitrary 100% coverage", importance: "critical" },
+          { id: "8-6-6", title: "Flaky test prevention: isolating async timing, avoiding hardcoded sleeps, using polling assertions", importance: "important" },
+        ],
+      },
     ],
   },
 
   // ============================================================
-  // PHASE 9 — DevOps: Docker, CI/CD & AWS
+  // PHASE 9 — DevOps, Docker, CI/CD, AWS & Observability
   // ============================================================
   {
     id: "phase-9",
     number: 9,
-    title: "DevOps: Docker, CI/CD & AWS",
+    title: "DevOps, Docker, CI/CD, AWS & Observability",
     emoji: "🐳",
     description:
-      "Ship code reliably. Containerize applications, automate checks via CI/CD, and understand core cloud services.",
-    gate: "Quiz 80%+, all exercises green, mini-build complete, explain-back ×3",
-    miniBuild: "Dockerized full-stack app with GitHub Actions CI pipeline",
+      "Ship software reliably and operate it in production. Multi-stage Docker packaging, Docker Compose multi-service environments, GitHub Actions CI pipelines, practical AWS core services (EC2, S3, RDS, IAM), metrics, and zero-downtime migrations.",
+    weeks: "Weeks 21–22 (24-Week Plan)",
+    outcomes: [
+      "Package Node and Next.js applications into secure, lightweight (<150MB) multi-stage Docker images",
+      "Orchestrate local multi-service stacks (Web + API + PostgreSQL + Redis) with Docker Compose and healthchecks",
+      "Automate linting, type-checking, testing, and container deployment via GitHub Actions CI/CD",
+      "Instrument applications with structured JSON logging, RED metrics, and zero-downtime database migration scripts",
+    ],
+    projectContext:
+      "Smart City & Collab-Code: Containerize both applications; create Docker Compose for local development; deploy to cloud VPS / AWS EC2 with S3 image storage and budget alerts.",
+    gate: "Explain: Multi-stage Docker build layer caching and non-root security principles | Implement: GitHub Actions workflow with pnpm/npm caching, lint, test, and container build | Debug: Troubleshoot a container crash loop caused by missing runtime environment variables | Apply: Execute zero-downtime database migration during container rollout.",
+    miniBuild: "Production Dockerized full-stack deployment with Docker Compose, automated GitHub Actions CI pipeline, S3 presigned upload integration, and health check endpoints.",
     topics: [
       {
         id: "9-1",
@@ -939,14 +1159,14 @@ export const roadmap: Phase[] = [
         subtopics: [
           { id: "9-3-1", title: "Workflow files: triggers (push, pull_request), jobs, steps", importance: "critical" },
           { id: "9-3-2", title: "Running linting, type-checking, and tests in CI", importance: "critical" },
-          { id: "9-3-3", title: "Caching dependencies: pnpm store cache", importance: "important" },
+          { id: "9-3-3", title: "Caching dependencies: pnpm/npm store cache", importance: "important" },
           { id: "9-3-4", title: "Secrets management and environment variables", importance: "critical" },
           { id: "9-3-5", title: "Building and publishing Docker images to GitHub Container Registry", importance: "important" },
         ],
       },
       {
         id: "9-4",
-        title: "AWS Cloud Basics",
+        title: "AWS Cloud Basics & Cost Safeguards",
         subtopics: [
           { id: "9-4-1", title: "EC2: virtual compute instances, security groups, SSH keys", importance: "critical" },
           { id: "9-4-2", title: "S3: object storage, bucket policies, presigned URLs for secure uploads", importance: "critical" },
@@ -967,21 +1187,42 @@ export const roadmap: Phase[] = [
           { id: "9-5-4", title: "Managing environments: dev, staging, production configuration", importance: "important" },
         ],
       },
+      {
+        id: "9-6",
+        title: "Production Observability, Security & Deployment Safeguards",
+        subtopics: [
+          { id: "9-6-1", title: "Application telemetry: RED method metrics (Rate, Errors, Duration) and measuring latency percentiles (p50, p95, p99)", importance: "critical" },
+          { id: "9-6-2", title: "Distributed tracing fundamentals: trace IDs, correlation IDs across HTTP requests, queues, and database calls", importance: "important" },
+          { id: "9-6-3", title: "Automated deployment rollbacks: health check failure triggers, blue-green switchback, rolling back bad commits", importance: "critical" },
+          { id: "9-6-4", title: "Safe database migrations in CI/CD pipelines: running migrations before app container cutover without downtime", importance: "critical" },
+          { id: "9-6-5", title: "Container security: vulnerability scanning with Trivy/Docker Scout, non-root users, minimal base images (Alpine/Distroless)", importance: "important" },
+          { id: "9-6-6", title: "Cloud cost guardrails: AWS billing alerts, stopping dev instances, tracking egress costs, staying in free tiers", importance: "important" },
+        ],
+      },
     ],
   },
 
   // ============================================================
-  // PHASE 10 — System Design & Architecture
+  // PHASE 10 — Practical System Design & Capstone Architecture
   // ============================================================
   {
     id: "phase-10",
     number: 10,
-    title: "System Design & Architecture",
+    title: "Practical System Design & Capstone Architecture",
     emoji: "🏗️",
     description:
-      "Think at scale. Design resilient distributed systems that handle millions of requests.",
-    gate: "Quiz 80%+, all exercises green, mini-build complete, explain-back ×3",
-    miniBuild: "Complete System Design document & prototype for a URL shortener",
+      "Practical entry-level and mid-level system design. Capacity estimation, bottleneck analysis, failure modes, rate limiters, URL shorteners, and architectural hardening of Collab-Code and Smart City projects.",
+    weeks: "Weeks 23–24 (24-Week Plan)",
+    outcomes: [
+      "Perform back-of-the-envelope capacity estimations (QPS, storage, bandwidth, memory) for real-world user bases",
+      "Identify architectural bottlenecks (CPU vs disk I/O vs network latency) and articulate concrete failure mitigation plans",
+      "Design standard interview systems (Rate Limiter, URL Shortener, Notification Engine, Collaborative Workspace)",
+      "Conduct a comprehensive production readiness and architectural audit of your two flagship projects",
+    ],
+    projectContext:
+      "Collab-Code & Smart City: Formalize complete system architecture diagrams, data flow specifications, failure mode recovery plans, and scalability benchmarks for both portfolio projects.",
+    gate: "Explain: Back-of-the-envelope QPS and storage math for 500,000 daily active users | Implement: Redis sliding-window log rate limiter with IP and user token keys | Debug: Resolve a single-point-of-failure in a primary-replica database setup | Apply: Defend Collab-Code and Smart City architectural decisions in a simulated senior interview.",
+    miniBuild: "Complete System Design document, capacity calculations, and working reference prototype for an API Rate Limiter with Sliding Window algorithm.",
     topics: [
       {
         id: "10-1",
@@ -1022,59 +1263,79 @@ export const roadmap: Phase[] = [
         id: "10-4",
         title: "Monorepo Architecture",
         subtopics: [
-          { id: "10-4-1", title: "pnpm workspaces: dependency hoisting, workspace:* protocol", importance: "important" },
+          { id: "10-4-1", title: "pnpm/npm workspaces: dependency hoisting, workspace packages", importance: "important" },
           { id: "10-4-2", title: "Sharing TypeScript types between frontend and backend", importance: "important" },
           { id: "10-4-3", title: "Internal shared packages (eslint-config, tsconfig, ui, utils)", importance: "important" },
           { id: "10-4-4", title: "Turborepo / Nx build caching and task pipelines", importance: "good-to-know" },
+        ],
+      },
+      {
+        id: "10-5",
+        title: "Practical System Design: Capacity Estimation, Bottlenecks & Operational Costs",
+        subtopics: [
+          { id: "10-5-1", title: "Back-of-the-envelope capacity calculations: estimating QPS, peak throughput, storage, bandwidth, and RAM for 100K DAU", importance: "critical" },
+          { id: "10-5-2", title: "Bottleneck analysis: identifying CPU bound vs memory vs disk I/O vs network latency bottlenecks in real architectures", importance: "critical" },
+          { id: "10-5-3", title: "Explicit failure scenarios: primary database failover, Redis eviction/outage, third-party API outage resilience", importance: "critical" },
+          { id: "10-5-4", title: "Real-world reliability tradeoffs: Consistency vs Availability in collaborative editing (Collab-Code) vs civic reporting (Smart City)", importance: "critical" },
+          { id: "10-5-5", title: "Operational cost analysis of architectural choices: serverless vs long-running containers, CDN caching cost savings", importance: "important" },
+          { id: "10-5-6", title: "Production architecture review and hardening of Collab-Code and Smart City Issue Reporting", importance: "critical" },
         ],
       },
     ],
   },
 
   // ============================================================
-  // PHASE 11 — NestJS (Enterprise Backend)
+  // PHASE 11 — NestJS (Enterprise Backend Extension - Bonus)
   // ============================================================
   {
     id: "phase-11",
     number: 11,
-    title: "NestJS (Enterprise Backend)",
+    title: "NestJS (Enterprise Backend Extension)",
     emoji: "🐱",
     description:
-      "Enterprise-grade Node.js framework. Heavily used in large companies. Built on decorators, modules, and Dependency Injection.",
-    gate: "Quiz 80%+, all exercises green, mini-build complete, explain-back ×3",
-    miniBuild: "NestJS CRUD API with Prisma, auth, and Swagger docs",
+      "Enterprise-grade Node.js architecture. Built on decorators, modules, and Dependency Injection. (Optional extension: valuable for corporate and enterprise MNC placement rounds).",
+    weeks: "Post-Core Extension (Bonus)",
+    outcomes: [
+      "Understand enterprise architectural structure (Inversion of Control and Dependency Injection)",
+      "Build modular REST APIs with NestJS Controllers, Services, Guards, and Pipes",
+      "Integrate Prisma and auto-generate Swagger OpenAPI documentation in NestJS",
+    ],
+    projectContext:
+      "Enterprise Reference: Learn how Smart City Issue Reporting APIs would be structured in a large-scale corporate enterprise codebase using NestJS modular architecture.",
+    gate: "Explain: How the NestJS IoC container resolves dependencies | Implement: NestJS ValidationPipe with Zod/class-validator | Debug: Fix a circular dependency issue between two NestJS modules | Apply: Build a modular CRUD resource with Swagger docs.",
+    miniBuild: "NestJS CRUD API with Prisma, JWT authentication guard, and auto-generated Swagger documentation.",
     topics: [
       {
         id: "11-1",
         title: "NestJS Architecture & Dependency Injection",
         subtopics: [
-          { id: "11-1-1", title: "Modules: @Module decorator, feature modules, global modules", importance: "critical" },
-          { id: "11-1-2", title: "Controllers: @Controller, routing, request/response decorators", importance: "critical" },
-          { id: "11-1-3", title: "Providers: @Injectable, service layer", importance: "critical" },
-          { id: "11-1-4", title: "Dependency Injection: how IoC container works under the hood", importance: "critical" },
-          { id: "11-1-5", title: "Lifecycle hooks: onModuleInit, onApplicationBootstrap", importance: "important" },
+          { id: "11-1-1", title: "Modules: @Module decorator, feature modules, global modules", importance: "important" },
+          { id: "11-1-2", title: "Controllers: @Controller, routing, request/response decorators", importance: "important" },
+          { id: "11-1-3", title: "Providers: @Injectable, service layer", importance: "important" },
+          { id: "11-1-4", title: "Dependency Injection: how IoC container works under the hood", importance: "important" },
+          { id: "11-1-5", title: "Lifecycle hooks: onModuleInit, onApplicationBootstrap", importance: "good-to-know" },
         ],
       },
       {
         id: "11-2",
         title: "Pipes, Guards, Interceptors & Filters",
         subtopics: [
-          { id: "11-2-1", title: "Pipes: validation and data transformation (ValidationPipe)", importance: "critical" },
-          { id: "11-2-2", title: "Guards: authentication and authorization (@UseGuards)", importance: "critical" },
-          { id: "11-2-3", title: "Interceptors: logging, response mapping, caching", importance: "important" },
-          { id: "11-2-4", title: "Exception Filters: catching and formatting HTTP exceptions", importance: "important" },
-          { id: "11-2-5", title: "NestJS execution order: Middleware → Guard → Interceptor → Pipe → Handler", importance: "critical" },
+          { id: "11-2-1", title: "Pipes: validation and data transformation (ValidationPipe)", importance: "important" },
+          { id: "11-2-2", title: "Guards: authentication and authorization (@UseGuards)", importance: "important" },
+          { id: "11-2-3", title: "Interceptors: logging, response mapping, caching", importance: "good-to-know" },
+          { id: "11-2-4", title: "Exception Filters: catching and formatting HTTP exceptions", importance: "good-to-know" },
+          { id: "11-2-5", title: "NestJS execution order: Middleware → Guard → Interceptor → Pipe → Handler", importance: "important" },
         ],
       },
       {
         id: "11-3",
         title: "NestJS with Prisma & Swagger",
         subtopics: [
-          { id: "11-3-1", title: "Prisma Module and Service integration in NestJS", importance: "critical" },
-          { id: "11-3-2", title: "DTOs with class-validator or Zod integration", importance: "critical" },
-          { id: "11-3-3", title: "Swagger / OpenAPI generation: @ApiTags, @ApiResponse", importance: "important" },
-          { id: "11-3-4", title: "Authentication with Passport.js & JWT Strategy", importance: "important" },
-          { id: "11-3-5", title: "Configuration management with @nestjs/config", importance: "important" },
+          { id: "11-3-1", title: "Prisma Module and Service integration in NestJS", importance: "important" },
+          { id: "11-3-2", title: "DTOs with class-validator or Zod integration", importance: "important" },
+          { id: "11-3-3", title: "Swagger / OpenAPI generation: @ApiTags, @ApiResponse", importance: "good-to-know" },
+          { id: "11-3-4", title: "Authentication with Passport.js & JWT Strategy", importance: "good-to-know" },
+          { id: "11-3-5", title: "Configuration management with @nestjs/config", importance: "good-to-know" },
         ],
       },
     ],
