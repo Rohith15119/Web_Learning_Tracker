@@ -16,10 +16,27 @@ export default function App() {
 
   const [searchQuery, setSearchQuery] = useState('');
   const [activeFilter, setActiveFilter] = useState<FilterType>('All');
+  const [showCadence, setShowCadence] = useState<boolean>(false);
   const [expandedPhases, setExpandedPhases] = useState<Set<string>>(() => new Set(['phase-0']));
   const [expandedTopics, setExpandedTopics] = useState<Set<string>>(() => new Set(['0-1']));
 
   const totalSubtopics = useMemo(() => getTotalSubtopics(roadmap), []);
+
+  const priorityCounts = useMemo(() => {
+    let critical = 0;
+    let important = 0;
+    let goodToKnow = 0;
+    for (const phase of roadmap) {
+      for (const topic of phase.topics) {
+        for (const sub of topic.subtopics) {
+          if (sub.importance === 'critical') critical++;
+          else if (sub.importance === 'important') important++;
+          else goodToKnow++;
+        }
+      }
+    }
+    return { critical, important, goodToKnow };
+  }, []);
 
   const totalCompleted = useMemo(() => {
     let count = 0;
@@ -74,11 +91,7 @@ export default function App() {
   };
 
   // Filter logic
-  const matchesSubtopic = (sub: SubTopic): boolean => {
-    const query = searchQuery.trim().toLowerCase();
-    const matchesSearch = query === '' || sub.title.toLowerCase().includes(query);
-    if (!matchesSearch) return false;
-
+  const matchesFilterOnly = (sub: SubTopic): boolean => {
     if (activeFilter === 'All') return true;
     if (activeFilter === 'Critical') return sub.importance === 'critical';
     if (activeFilter === 'Important') return sub.importance === 'important';
@@ -93,17 +106,18 @@ export default function App() {
 
     return roadmap
       .map((phase) => {
+        const phaseMatchesDirectly = query !== '' && phase.title.toLowerCase().includes(query);
+
         const filteredTopics = phase.topics
           .map((topic) => {
-            const topicMatchesDirectly = query !== '' && topic.title.toLowerCase().includes(query);
+            const topicMatchesDirectly =
+              query !== '' && (topic.title.toLowerCase().includes(query) || phaseMatchesDirectly);
 
             const filteredSubtopics = topic.subtopics.filter((sub) => {
-              if (topicMatchesDirectly && (activeFilter === 'All' || activeFilter === 'Complete' || activeFilter === 'Incomplete')) {
-                if (activeFilter === 'Complete') return isCompleted(sub.id);
-                if (activeFilter === 'Incomplete') return !isCompleted(sub.id);
-                return true;
-              }
-              return matchesSubtopic(sub);
+              const matchesQuery =
+                query === '' || topicMatchesDirectly || sub.title.toLowerCase().includes(query);
+              if (!matchesQuery) return false;
+              return matchesFilterOnly(sub);
             });
 
             return {
@@ -145,6 +159,16 @@ export default function App() {
 
   const filterTabs: FilterType[] = ['All', 'Critical', 'Important', 'Good to Know', 'Incomplete', 'Complete'];
 
+  const getFilterTabLabel = (tab: FilterType): string => {
+    if (tab === 'All') return `All (${totalSubtopics})`;
+    if (tab === 'Critical') return `Critical (${priorityCounts.critical})`;
+    if (tab === 'Important') return `Important (${priorityCounts.important})`;
+    if (tab === 'Good to Know') return `Good to Know (${priorityCounts.goodToKnow})`;
+    if (tab === 'Complete') return `Complete (${totalCompleted})`;
+    if (tab === 'Incomplete') return `Incomplete (${totalSubtopics - totalCompleted})`;
+    return tab;
+  };
+
   return (
     <div className="app-container">
       {/* Top Header */}
@@ -154,9 +178,17 @@ export default function App() {
             <h1>
               <span>⚡</span> Full-Stack TypeScript Tracker
             </h1>
-            <p>Track your journey from TypeScript core to production scale architecture</p>
+            <p>24-Week Job-Ready Roadmap (4–5 hrs/day) • Anchored in Collab-Code &amp; Smart City Issue Reporting</p>
           </div>
           <div className="header-actions">
+            <button
+              type="button"
+              className="btn-secondary"
+              onClick={() => setShowCadence((prev) => !prev)}
+              title="Toggle 24-Week Job-Readiness & Interview Playbook"
+            >
+              {showCadence ? 'Hide Playbook' : '🎯 24-Week Playbook'}
+            </button>
             <button type="button" className="btn-secondary" onClick={expandAll} title="Expand all phases and topics">
               Expand All
             </button>
@@ -193,15 +225,40 @@ export default function App() {
               Total Topics: <span>{roadmap.reduce((acc, p) => acc + p.topics.length, 0)}</span>
             </div>
             <div className="quick-stats-item">
-              Critical: <span>🔴</span>
+              Critical: <span>🔴 {priorityCounts.critical}</span>
             </div>
             <div className="quick-stats-item">
-              Important: <span>🟡</span>
+              Important: <span>🟡 {priorityCounts.important}</span>
             </div>
             <div className="quick-stats-item">
-              Good-to-know: <span>🟢</span>
+              Good-to-know: <span>🟢 {priorityCounts.goodToKnow}</span>
             </div>
           </div>
+
+          {showCadence && (
+            <div className="phase-footer" style={{ marginTop: '1rem' }}>
+              <div className="footer-section project-context">
+                <span className="footer-section-label">⏱️ Daily 4.5-Hour Study Allocation (30–32 hrs/week)</span>
+                <p className="footer-section-text">
+                  <strong>2.5 hrs:</strong> Core concept mastery + hands-on implementation in mini-builds, Collab-Code &amp; Smart City •{' '}
+                  <strong>1.0 hr:</strong> Debugging, automated testing, and refactoring •{' '}
+                  <strong>1.0 hr:</strong> Active recall revision, 2-min verbal explain-backs, and timed interview drills.
+                </p>
+              </div>
+              <div className="footer-section gate">
+                <span className="footer-section-label">🎤 Early &amp; Continuous Interview Milestones (Starting Week 1)</span>
+                <p className="footer-section-text">
+                  <strong>Weeks 1–4:</strong> Daily verbal explain-backs &amp; timed JS async/closure output drills •{' '}
+                  <strong>Weeks 5–6:</strong> Mock Interview #1 (TS, JS Runtime, Web Security) •{' '}
+                  <strong>Weeks 7–10:</strong> Mock Interview #2 (Node.js, REST APIs, JWT/RBAC) + Resume Backend Bullets •{' '}
+                  <strong>Weeks 11–13:</strong> Timed SQL/Prisma query drills &amp; Smart City DB deep walkthrough •{' '}
+                  <strong>Weeks 14–16:</strong> Mock Interview #3 (React, Next.js 15/16 RSC &amp; Caching) + 90-min Machine Coding •{' '}
+                  <strong>Weeks 17–20:</strong> Collab-Code WebSocket/BullMQ defense + Mock Interview #4 (Testing &amp; Bug Bash) •{' '}
+                  <strong>Weeks 21–24:</strong> Production deployment sign-off, README diagrams, and Full-Loop Mock Interviews #5 &amp; #6.
+                </p>
+              </div>
+            </div>
+          )}
         </div>
       </header>
 
@@ -211,7 +268,7 @@ export default function App() {
           <input
             type="text"
             className="search-input"
-            placeholder="Search topics or subtopics (e.g. 'closures', 'docker', 'event loop')..."
+            placeholder="Search topics or subtopics (e.g. 'RFC 9457', 'variance', 'use cache', 'AbortController')..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
           />
@@ -228,7 +285,7 @@ export default function App() {
               {tab === 'Critical' && '🔴 '}
               {tab === 'Important' && '🟡 '}
               {tab === 'Good to Know' && '🟢 '}
-              {tab}
+              {getFilterTabLabel(tab)}
             </button>
           ))}
         </div>
