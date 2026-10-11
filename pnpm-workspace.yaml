@@ -1,5 +1,0 @@
-packages:
-  - "exercises/*"
-  - "tracker"
-allowBuilds:
-  esbuild: true

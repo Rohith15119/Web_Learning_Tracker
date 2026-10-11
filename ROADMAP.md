@@ -2,7 +2,7 @@
 
 > **Goal:** Job-ready for top MNC and product-company full-stack roles. Master core web development fundamentals, TypeScript strict, backend architecture, modern React/Next.js, databases, scaling, and system design.
 > **Stack:** TypeScript (strict), React, Next.js (App Router), Node.js, Express, NestJS, Zod, PostgreSQL, Prisma, MongoDB, Redis, Socket.io, BullMQ, Vitest, Playwright, Docker, GitHub Actions, AWS.
-> **Interactive Tracker:** Launch locally via `pnpm --filter progress-tracker dev` (http://localhost:5173).
+> **Interactive Tracker:** Launch locally via `cd tracker && npm run dev` (http://localhost:5173).
 >
 > **🔴 Critical** = Asked in almost every interview round
 > **🟡 Important** = Frequently asked, daily production use
