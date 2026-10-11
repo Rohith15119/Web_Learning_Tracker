@@ -1,0 +1,21 @@
+{
+  // TODO 1: Extend from the root workspace tsconfig.
+  //         Hint: use "extends" with a relative path like "../../tsconfig.json"
+
+  "compilerOptions": {
+    // TODO 2: Enable strict mode.
+
+    // TODO 3: Enable noUncheckedIndexedAccess.
+    //         This is NOT included in "strict" — you must set it separately.
+
+    // TODO 4: Set the right target, module, and moduleResolution
+    //         for a modern Node.js ESM project.
+    //         (The root tsconfig already has these — do you even need them here?)
+
+    // TODO 5: Flag unused locals and unused parameters as errors.
+
+    "outDir": "./dist",
+    "rootDir": "./src"
+  },
+  "include": ["src"]
+}
